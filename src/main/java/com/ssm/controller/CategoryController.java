@@ -23,7 +23,7 @@ public class CategoryController {
 
 	/**
 	 *
-	 * @return
+	 * sdsdsdsd
 	 */
 
 
@@ -31,7 +31,7 @@ public class CategoryController {
 	@RequestMapping("/listCategory")
 	public List<Category> listCategory() {
 
-		System.out.println("------controller--进入服务器");
+		System.out.println("---------controller--进入服务器");
 		List<Category> li= categoryService.listssss();
 		System.out.println(li);
 		return li;
