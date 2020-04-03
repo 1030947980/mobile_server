@@ -21,13 +21,6 @@ public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
 
-	/**
-	 *
-	 * sdsdsdsd
-	 */
-
-
-
 	@RequestMapping("/listCategory")
 	public List<Category> listCategory() {
 
