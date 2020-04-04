@@ -20,12 +20,16 @@
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <mvc:annotation-driven />
 
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!-- 解除servlet对静态资源文件访问的限制 -->
     <mvc:default-servlet-handler/>
-    <!-- 接口跨域配置 -->
-    <!-- 接口跨域配置 -->
 
 
     <bean

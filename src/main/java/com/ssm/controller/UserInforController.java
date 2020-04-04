@@ -15,6 +15,7 @@ public class UserInforController {
     @RequestMapping("/userNameLogin")
     public String userNameLogin(@RequestParam("name") String name,@RequestParam("passowrd") String password){
         if(userInforService.userNameCheck(name)){
+
             return "SUCCESS";
         }
         else{

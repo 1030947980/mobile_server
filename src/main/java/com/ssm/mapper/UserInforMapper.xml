@@ -5,5 +5,22 @@
 
 <mapper namespace="com.ssm.dao.UserInforDao">
 
+    <select id="findByCodition" resultType="com.ssm.pojo.UserInfor">
+      select * from user_tab
+      <where>
+        <if test="user_id != 0">
+          AND user_id = #{user_id}
+        </if>
+        <if test="user_name != null">
+          AND user_name = #{user_name}
+        </if>
+        <if test="user_phone != null">
+          AND user_phone = #{user_phone}
+        </if>
+      </where>
+    </select>
+    <select id="findAllUser" resultType="com.ssm.pojo.UserInfor">
+      select * from user_tab where user_state=0
+    </select>
 </mapper>
 
