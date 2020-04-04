@@ -32,7 +32,7 @@ public class ZhenziSms {
     /**
      * 生成6位随机数，发送验证短信，并将验证码返回给控制层生成cookie
      */
-    public String sendSMS(String phone) throws Exception {
+    public String sendMessage(String phone) throws Exception {
         String code = getNonce_str();
         ZhenziSmsClient client = new ZhenziSmsClient("https://sms_developer.zhenzikj.com",
                 "102561", "3d8791f5-8cfa-4468-b9e7-13cb5b3f0ef8");

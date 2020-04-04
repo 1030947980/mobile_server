@@ -5,22 +5,31 @@
 
 <mapper namespace="com.ssm.dao.UserInforDao">
 
-    <select id="findByCodition" resultType="com.ssm.pojo.UserInfor">
+    <insert id="newUserByName">
+      insert into user_tab (user_name,user_password,user_nickname)
+      values (#{user_name},#{user_password},#{user_nickname})
+    </insert>
+    <insert id="newUserByPhone">
+      insert into user_tab (user_name,user_password,user_nickname,user_phone)
+      values (#{user_name},#{user_password},#{user_nickname},#{user_phone})
+    </insert>
+
+    <select id="findByCondition" resultType="com.ssm.pojo.UserInfor">
       select * from user_tab
       <where>
         <if test="user_id != 0">
           AND user_id = #{user_id}
         </if>
-        <if test="user_name != null">
+        <if test="user_name != null and user_name != ''">
           AND user_name = #{user_name}
         </if>
-        <if test="user_phone != null">
+        <if test="user_phone != null and user_phone != ''">
           AND user_phone = #{user_phone}
         </if>
       </where>
     </select>
     <select id="findAllUser" resultType="com.ssm.pojo.UserInfor">
-      select * from user_tab where user_state=0
+      select * from user_tab where user_state = 0
     </select>
 </mapper>
 
