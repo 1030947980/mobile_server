@@ -60,7 +60,7 @@ public class UserInforSerciceImpl implements UserInforService {
             if(getUser.getUser_state()==0){
                 Cookie[] cookies = request.getCookies();
                 String cookieCode ="";
-                //cookie不为空
+                //cookie 不为空
                 if(cookies!=null){
                     for(Cookie cookie:cookies){
                         //cookie phone 与phone相同
