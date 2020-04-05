@@ -13,12 +13,11 @@ public interface UserInforDao {
     int newUserByName(UserInfor userInfor);
     int newUserByPhone(UserInfor userInfor);
     /**
-     * 查询用户，通过id、name、phone查询用户
+     * 查询用户，name、phone,用于登陆
      * @param userInfor 用户（id/name/phone）
      * @return userInfor
      */
     UserInfor findByCondition(UserInfor userInfor);
-
     /**
      * 获取所有用户
      * @return 用户
