@@ -3,6 +3,7 @@ package com.ssm.service.impl;
 import com.ssm.dao.UserInforDao;
 import com.ssm.pojo.UserInfor;
 import com.ssm.service.UserInforService;
+import com.ssm.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class UserInforSerciceImpl implements UserInforService {
             //用户是否被禁用
             if(getUser.getUser_state()==0){
                 //用户密码是否正确
-                if(getUser.getUser_password().equals(password)){
+                if(getUser.getUser_password().equals(MD5.getInstance().computeMD5(password,name))){
                     return "SUCCESS";
                 }
                 else{
@@ -100,7 +101,7 @@ public class UserInforSerciceImpl implements UserInforService {
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_name(name);
         userInfor.setUser_nickname(name);
-        userInfor.setUser_password(password);
+        userInfor.setUser_password(MD5.getInstance().computeMD5(password,name));
         if(userNameCheck(name)){
             userInforDao.newUserByName(userInfor);
             return "SUCCESS";
@@ -131,7 +132,7 @@ public class UserInforSerciceImpl implements UserInforService {
                 //验证码正确
                 if(cookieCode.equals(code)){
                     userInfor .setUser_name(phone);
-                    userInfor.setUser_password(phone);
+                    userInfor.setUser_password(MD5.getInstance().computeMD5(phone,phone));
                     userInfor.setUser_nickname(phone);
                     userInfor.setUser_phone(phone);
                     userInforDao.newUserByPhone(userInfor);
