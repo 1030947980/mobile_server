@@ -22,9 +22,10 @@ public class UserInforSerciceImpl implements UserInforService {
      */
     @Override
     public String UserNameLogin(String name, String password) {
+        System.out.println("service登陆"+name);
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_name(name);
-        UserInfor getUser=userInforDao.findByCondition(userInfor);
+        UserInfor getUser=userInforDao.findUser(userInfor);
         //用户是否存在
         if (getUser!=null){
             //用户是否被禁用
@@ -53,7 +54,7 @@ public class UserInforSerciceImpl implements UserInforService {
         //手机号码不存在
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_phone(phone);
-        UserInfor getUser=userInforDao.findByCondition(userInfor);
+        UserInfor getUser=userInforDao.findUser(userInfor);
         if (getUser==null){
             return "NONE";
         }
@@ -178,6 +179,25 @@ public class UserInforSerciceImpl implements UserInforService {
         userInfor.setUser_phone(phone);
         return userInforDao.findByCondition(userInfor)==null;
     }
+
+    @Override
+    public String changePassword(String name, String oldPassword, String newPassword) {
+        return null;
+    }
+
+    @Override
+    public String updateUserInfor(int id, String name, String nickName, String avatar, String sex, String phone) {
+        UserInfor userInfor = new UserInfor();
+        userInfor.setUser_id(id);
+        userInfor.setUser_name(name);
+        userInfor.setUser_nickname(nickName);
+        userInfor.setUser_avatar(avatar);
+        userInfor.setUser_sex(sex);
+        userInfor.setUser_phone(phone);
+        userInforDao.updateUserInfor(userInfor);
+        return "SUCCESS";
+    }
+
     /**
      * ID查找用户
      */
@@ -203,6 +223,15 @@ public class UserInforSerciceImpl implements UserInforService {
     public UserInfor findUserByName(String name) {
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_name(name);
+        return userInforDao.findByCondition(userInfor);
+    }
+    /**
+     * 用户昵称查找用户
+     */
+    @Override
+    public UserInfor findUserByNickName(String nickName) {
+        UserInfor userInfor = new UserInfor();
+        userInfor.setUser_nickname(nickName);
         return userInforDao.findByCondition(userInfor);
     }
     /**

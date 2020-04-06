@@ -1,5 +1,6 @@
 package com.ssm.controller;
 
+import com.ssm.pojo.UserInfor;
 import com.ssm.service.UserInforService;
 import com.ssm.util.MD5;
 import com.ssm.util.ZhenziSms;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 
 @RestController
@@ -21,6 +23,7 @@ public class UserInforController {
     //用户名登陆
     @RequestMapping("/userNameLogin")
     public String userNameLogin(@RequestParam("name") String name,@RequestParam("password") String password){
+        System.out.println("controller登陆"+name);
         return userInforService.UserNameLogin(name,password);
     }
 
@@ -43,6 +46,54 @@ public class UserInforController {
                                     HttpServletRequest request,HttpServletResponse response){
         return userInforService.phoneRegister(phone,code,request,response);
     }
+
+    //查询用户用户id
+    @RequestMapping("/findUserById")
+    public UserInfor findUserById(@RequestParam("id") int id){
+        return userInforService.findUserById(id);
+    }
+
+    //查询用户用户phone
+    @RequestMapping("/findUserByPhone")
+    public UserInfor findUserByPhone(@RequestParam("phone") String phone){
+        return userInforService.findUserByPhone(phone);
+    }
+
+    //查询用户用户name
+    @RequestMapping("/findUserByName")
+    public UserInfor findUserByName(@RequestParam("name") String name){
+        return userInforService.findUserByName(name);
+    }
+
+    //查询用户用户name
+    @RequestMapping("/findUserByNickName")
+    public UserInfor findUserByNickName(@RequestParam("nickName") String nickName){
+        return userInforService.findUserByNickName(nickName);
+    }
+
+    //获取所有用户
+    @RequestMapping("/findAllUser")
+    public List<UserInfor> findAll(){
+        return userInforService.findAllUser();
+    }
+
+    //修改用户信息
+    @RequestMapping("/updateUserInfor")
+    public String updateUserInfor(@RequestParam("id") int id,@RequestParam("name") String name,
+                                  @RequestParam("nickName") String nickName,@RequestParam("avatar") String avatar,
+                                  @RequestParam("sex") String sex,@RequestParam("phone") String phone){
+
+        return userInforService.updateUserInfor(id,name,nickName,avatar,sex,phone);
+    }
+
+    //通过用户名修改密码
+    @RequestMapping("/changePassword")
+    public String changePassword(@RequestParam("name") String name,@RequestParam("oldPassword") String oldPassword
+            ,@RequestParam("newPassword") String newPassword){
+        return userInforService.changePassword(name,oldPassword,newPassword);
+    }
+
+    //通过手机修改密码
 
     //发送注册短信  将phone code加入到cookie中并且设置时长为5分钟
     @RequestMapping("/sendRegisterMessage")

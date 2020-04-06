@@ -9,17 +9,29 @@
       insert into user_tab (user_name,user_password,user_nickname)
       values (#{user_name},#{user_password},#{user_nickname})
     </insert>
+
     <insert id="newUserByPhone">
       insert into user_tab (user_name,user_password,user_nickname,user_phone)
       values (#{user_name},#{user_password},#{user_nickname},#{user_phone})
     </insert>
 
-    <select id="findByCondition" resultType="com.ssm.pojo.UserInfor">
+    <update id="updateUserInfor">
+      update user_tab
+        <trim prefix="set" suffixOverrides=",">
+            <if test="user_name!=null">user_name=#{user_name},</if>
+            <if test="user_password!=null">user_password=#{user_password},</if>
+            <if test="user_nickname!=null">user_nickname=#{user_nickname},</if>
+            <if test="user_avatar!=null">user_avatar=#{user_avatar},</if>
+            <if test="user_sex!=null">user_sex=#{user_sex},</if>
+            <if test="user_phone!=null">user_phone=#{user_phone},</if>
+            <if test="user_state!=null">user_state=#{user_state},</if>
+        </trim>
+        where user_id =#{user_id}
+    </update>
+
+    <select id="findUser" resultType="com.ssm.pojo.UserInfor">
       select * from user_tab
       <where>
-        <if test="user_id != 0">
-          AND user_id = #{user_id}
-        </if>
         <if test="user_name != null and user_name != ''">
           AND user_name = #{user_name}
         </if>
@@ -28,8 +40,29 @@
         </if>
       </where>
     </select>
-    <select id="findAllUser" resultType="com.ssm.pojo.UserInfor">
-      select * from user_tab where user_state = 0
+
+    <select id="findByCondition" resultType="com.ssm.pojo.UserInfor">
+        select user_id,user_name,user_nickname,user_avatar,user_sex,user_phone from user_tab
+        <where>
+            <if test="user_id != 0">
+                AND user_id = #{user_id}
+            </if>
+            <if test="user_name != null and user_name != ''">
+                AND user_name = #{user_name}
+            </if>
+            <if test="user_phone != null and user_phone != ''">
+                AND user_phone = #{user_phone}
+            </if>
+            <if test="user_nickname != null and user_nickname != ''">
+                AND user_nickname = #{user_nickname}
+            </if>
+                AND user_state = 0
+        </where>
     </select>
+
+    <select id="findAllUser" resultType="com.ssm.pojo.UserInfor">
+      select user_id,user_name,user_nickname,user_avatar,user_sex,user_phone from user_tab where user_state = 0
+    </select>
+
 </mapper>
 
