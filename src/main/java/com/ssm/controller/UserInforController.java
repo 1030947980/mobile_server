@@ -1,6 +1,7 @@
 package com.ssm.controller;
 
 import com.ssm.service.UserInforService;
+import com.ssm.util.MD5;
 import com.ssm.util.ZhenziSms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,12 +47,13 @@ public class UserInforController {
     //发送注册短信  将phone code加入到cookie中并且设置时长为5分钟
     @RequestMapping("/sendRegisterMessage")
     public String sendRegisterMessage(@RequestParam("phone") String phone, HttpServletResponse response) throws Exception {
-        int min=5;
         //手机未被绑定
         if(userInforService.phoneCheck(phone)){
             String code = ZhenziSms.getInstance().sendMessage(phone);
-            //创建cookie  map(phone,code)
-            Cookie cookie = new Cookie(phone,code);
+//            创建cookie  map(phone,code)
+            String md5phone = MD5.getInstance().computeMD5(phone,code);
+            String md5code = MD5.getInstance().computeMD5(code,phone);
+            Cookie cookie = new Cookie(md5phone,md5code);
             //设置cookie时长
             cookie.setMaxAge(60*5);
             response.addCookie(cookie);
@@ -71,7 +73,9 @@ public class UserInforController {
         }
         else{
             String code = ZhenziSms.getInstance().sendMessage(phone);
-            Cookie cookie = new Cookie(phone,code);
+            String md5phone = MD5.getInstance().computeMD5(phone,code);
+            String md5code = MD5.getInstance().computeMD5(code,phone);
+            Cookie cookie = new Cookie(md5phone,md5code);
             //创建cookie  map(phone,code)
             //设置cookie时长
             cookie.setMaxAge(60*min);

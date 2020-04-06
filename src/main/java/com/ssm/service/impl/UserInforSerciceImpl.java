@@ -63,17 +63,19 @@ public class UserInforSerciceImpl implements UserInforService {
                 String cookieCode ="";
                 //cookie 不为空
                 if(cookies!=null){
+                    String md5phone = MD5.getInstance().computeMD5(phone,code);
+                    String md5code = MD5.getInstance().computeMD5(code,phone);
                     for(Cookie cookie:cookies){
                         //cookie phone 与phone相同
-                        if(cookie.getName().equals(phone)){
+                        if(cookie.getName().equals(md5phone)){
                             //获取对应map的value
                             cookieCode =cookie.getValue();
                         }
                     }
                     //验证码正确
-                    if(cookieCode.equals(code)){
+                    if(cookieCode.equals(md5code)){
                         //删除cookie 只需创建一个与之前cookie 的value和MaxAge不同的cookie加入进去即可
-                        Cookie cookie = new Cookie(phone,null);
+                        Cookie cookie = new Cookie(md5phone,null);
                         cookie.setMaxAge(0);
                         response.addCookie(cookie);
                         return "SUCCESS";
@@ -122,22 +124,24 @@ public class UserInforSerciceImpl implements UserInforService {
             String cookieCode ="";
             //cookie不为空
             if(cookies!=null){
+                String md5phone = MD5.getInstance().computeMD5(phone,code);
+                String md5code = MD5.getInstance().computeMD5(code,phone);
                 for(Cookie cookie:cookies){
                     //cookie phone 与phone相同
-                    if(cookie.getName().equals(phone)){
+                    if(cookie.getName().equals(md5phone)){
                         //获取对应map的value
                         cookieCode =cookie.getValue();
                     }
                 }
                 //验证码正确
-                if(cookieCode.equals(code)){
+                if(cookieCode.equals(md5code)){
                     userInfor .setUser_name(phone);
                     userInfor.setUser_password(MD5.getInstance().computeMD5(phone,phone));
                     userInfor.setUser_nickname(phone);
                     userInfor.setUser_phone(phone);
                     userInforDao.newUserByPhone(userInfor);
                     //删除cookie 只需创建一个与之前cookie 的value和MaxAge不同的cookie加入进去即可
-                    Cookie cookie = new Cookie(phone,null);
+                    Cookie cookie = new Cookie(md5phone,null);
                     cookie.setMaxAge(0);
                     response.addCookie(cookie);
                     return "SUCCESS";

@@ -38,10 +38,10 @@ public class ZhenziSms {
                 "102561", "3d8791f5-8cfa-4468-b9e7-13cb5b3f0ef8");
 
         Map<String, String> params = new HashMap<String, String>();
-        params.put("message", "您的验证码为:"+code+" 5分钟内输入有效。");
+        params.put("message", "您的验证码是:"+code+"，5分钟内输入有效，请勿泄露。");
         params.put("number", phone);
         String result = client.send(params);
-        System.out.println("a a a a a a发送的结果为："+result);
+        System.out.println("发送的结果为："+result);
         return  code;
     }
 
