@@ -180,11 +180,18 @@ public class UserInforSerciceImpl implements UserInforService {
         return userInforDao.findByCondition(userInfor)==null;
     }
 
+    /**
+     *
+     * 修改密码
+     */
     @Override
     public String changePassword(String name, String oldPassword, String newPassword) {
         return null;
     }
 
+    /**
+     *修改用户信息（个人页面修改）
+     */
     @Override
     public String updateUserInfor(int id, String name, String nickName, String avatar, String sex, String phone) {
         UserInfor userInfor = new UserInfor();
