@@ -15,6 +15,7 @@ import com.ssm.pojo.Category;
 import com.ssm.service.CategoryService;
 import com.ssm.util.Page;
 
+
 // 告诉spring mvc这是一个控制器类
 @RestController
 public class CategoryController {

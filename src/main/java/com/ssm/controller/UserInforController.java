@@ -50,6 +50,7 @@ public class UserInforController {
     //查询用户用户id
     @RequestMapping("/findUserById")
     public UserInfor findUserById(@RequestParam("id") int id){
+
         return userInforService.findUserById(id);
     }
 
@@ -59,13 +60,13 @@ public class UserInforController {
         return userInforService.findUserByPhone(phone);
     }
 
-    //查询用户用户name
+    //查询用户 name
     @RequestMapping("/findUserByName")
     public UserInfor findUserByName(@RequestParam("name") String name){
         return userInforService.findUserByName(name);
     }
 
-    //查询用户用户name
+    //查询用户 用户名
     @RequestMapping("/findUserByNickName")
     public UserInfor findUserByNickName(@RequestParam("nickName") String nickName){
         return userInforService.findUserByNickName(nickName);
