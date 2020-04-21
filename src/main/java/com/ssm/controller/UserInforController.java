@@ -87,22 +87,33 @@ public class UserInforController {
         return userInforService.updateUserInfor(id,name,nickName,avatar,sex,phone);
     }
 
-    //通过用户名修改密码
+    //修改昵称
+    @RequestMapping("/editUserNickName")
+    public String editUserNickName(@RequestParam("id") int id,@RequestParam("nickName") String nickName){
+        return userInforService.editUserNickName(id,nickName);
+    }
+
+    //修改性别
+    @RequestMapping("/editUserSex")
+    public String editUserSex(@RequestParam("id") int id,@RequestParam("sex") String sex){
+        return userInforService.editUserSex(id,sex);
+    }
+
+    //通过用户 名修改密码
     @RequestMapping("/changePassword")
-    public String changePassword(@RequestParam("name") String name,@RequestParam("oldPassword") String oldPassword
+    public String changePassword(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("oldPassword") String oldPassword
             ,@RequestParam("newPassword") String newPassword){
-        return userInforService.changePassword(name,oldPassword,newPassword);
+        return userInforService.changePassword(id,name,oldPassword,newPassword);
     }
 
     //通过手机修改密码
-
     //发送注册短信  将phone code加入到cookie中并且设置时长为5分钟
     @RequestMapping("/sendRegisterMessage")
     public String sendRegisterMessage(@RequestParam("phone") String phone, HttpServletResponse response) throws Exception {
         //手机未被绑定
         if(userInforService.phoneCheck(phone)){
             String code = ZhenziSms.getInstance().sendMessage(phone);
-//            创建cookie  map(phone,code)
+//            创建cookie  map(phone+code的加密,code+phone的加密)
             String md5phone = MD5.getInstance().computeMD5(phone,code);
             String md5code = MD5.getInstance().computeMD5(code,phone);
             Cookie cookie = new Cookie(md5phone,md5code);
@@ -128,7 +139,7 @@ public class UserInforController {
             String md5phone = MD5.getInstance().computeMD5(phone,code);
             String md5code = MD5.getInstance().computeMD5(code,phone);
             Cookie cookie = new Cookie(md5phone,md5code);
-            //创建cookie  map(phone,code)
+//            创建cookie  map(phone+code的加密,code+phone的加密)
             //设置cookie时长
             cookie.setMaxAge(60*min);
             response.addCookie(cookie);

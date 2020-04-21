@@ -13,8 +13,10 @@ public interface UserInforService {
     String phoneRegister(String phone, String code, HttpServletRequest request,HttpServletResponse response);
     Boolean userNameCheck(String name);
     Boolean phoneCheck(String phone);
-    String changePassword(String name,String oldPassword,String newPassword);
+    String changePassword(int id,String name,String oldPassword,String newPassword);
     String updateUserInfor(int id,String name,String nickName,String avatar,String sex,String phone);
+    String editUserNickName(int id,String nickName);
+    String editUserSex(int id,String sex);
     UserInfor findUserById(int id);
     UserInfor findUserByPhone(String phone);
     UserInfor findUserByName(String name);

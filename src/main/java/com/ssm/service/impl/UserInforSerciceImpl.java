@@ -30,7 +30,7 @@ public class UserInforSerciceImpl implements UserInforService {
         if (getUser!=null){
             //用户是否被禁用
             if(getUser.getUser_state()==0){
-                //用户密码是否正确
+                //用户密码是否正确 密码为password+name的加密
                 if(getUser.getUser_password().equals(MD5.getInstance().computeMD5(password,name))){
                     return "SUCCESS";
                 }
@@ -185,7 +185,8 @@ public class UserInforSerciceImpl implements UserInforService {
      * 修改密码
      */
     @Override
-    public String changePassword(String name, String oldPassword, String newPassword) {
+    public String changePassword(int id,String name, String oldPassword, String newPassword) {
+
         return null;
     }
 
@@ -201,6 +202,35 @@ public class UserInforSerciceImpl implements UserInforService {
         userInfor.setUser_avatar(avatar);
         userInfor.setUser_sex(sex);
         userInfor.setUser_phone(phone);
+        userInforDao.updateUserInfor(userInfor);
+        return "SUCCESS";
+    }
+
+    /**
+     *  修改用户昵称
+     * @param id ,nickName
+     * @param nickName
+     * @return
+     */
+    @Override
+    public String editUserNickName(int id, String nickName){
+        if(findUserByNickName(nickName)==null){
+            UserInfor userInfor = new UserInfor();
+            userInfor.setUser_id(id);
+            userInfor.setUser_nickname(nickName);
+            userInforDao.updateUserInfor(userInfor);
+            return "SUCCESS";
+        }
+        else{
+            return "EXIST";
+        }
+    }
+
+    @Override
+    public String editUserSex(int id, String sex) {
+        UserInfor userInfor = new UserInfor();
+        userInfor.setUser_id(id);
+        userInfor.setUser_sex(sex);
         userInforDao.updateUserInfor(userInfor);
         return "SUCCESS";
     }
