@@ -22,7 +22,6 @@ public class UserInforSerciceImpl implements UserInforService {
      */
     @Override
     public String UserNameLogin(String name, String password) {
-        System.out.println("service登陆"+name);
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_name(name);
         UserInfor getUser=userInforDao.findUser(userInfor);
@@ -181,16 +180,6 @@ public class UserInforSerciceImpl implements UserInforService {
     }
 
     /**
-     *
-     * 修改密码
-     */
-    @Override
-    public String changePassword(int id,String name, String oldPassword, String newPassword) {
-
-        return null;
-    }
-
-    /**
      *修改用户信息（个人页面修改）
      */
     @Override
@@ -226,6 +215,12 @@ public class UserInforSerciceImpl implements UserInforService {
         }
     }
 
+    /**
+     * 修改性别
+     * @param id
+     * @param sex
+     * @return
+     */
     @Override
     public String editUserSex(int id, String sex) {
         UserInfor userInfor = new UserInfor();
@@ -233,6 +228,24 @@ public class UserInforSerciceImpl implements UserInforService {
         userInfor.setUser_sex(sex);
         userInforDao.updateUserInfor(userInfor);
         return "SUCCESS";
+    }
+
+    /**
+     *
+     * 修改密码
+     */
+    @Override
+    public String editUserPassword(int id,String name, String oldPassword, String newPassword) {
+        if(UserNameLogin(name,oldPassword)=="SUCCESS"){
+            UserInfor userInfor = new UserInfor();
+            userInfor.setUser_id(id);
+            userInfor.setUser_password(MD5.getInstance().computeMD5(newPassword,name));
+            userInforDao.updateUserInfor(userInfor);
+            return "SUCCESS";
+        }
+        else{
+            return "ERROR";
+        }
     }
 
     /**

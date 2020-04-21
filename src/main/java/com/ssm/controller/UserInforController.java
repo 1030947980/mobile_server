@@ -99,14 +99,13 @@ public class UserInforController {
         return userInforService.editUserSex(id,sex);
     }
 
-    //通过用户 名修改密码
-    @RequestMapping("/changePassword")
+    //修改密码
+    @RequestMapping("/editUserPassword")
     public String changePassword(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("oldPassword") String oldPassword
             ,@RequestParam("newPassword") String newPassword){
-        return userInforService.changePassword(id,name,oldPassword,newPassword);
+        return userInforService.editUserPassword(id,name,oldPassword,newPassword);
     }
 
-    //通过手机修改密码
     //发送注册短信  将phone code加入到cookie中并且设置时长为5分钟
     @RequestMapping("/sendRegisterMessage")
     public String sendRegisterMessage(@RequestParam("phone") String phone, HttpServletResponse response) throws Exception {
