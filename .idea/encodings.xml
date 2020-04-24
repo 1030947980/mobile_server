@@ -3,8 +3,11 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/controller/UserInforController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/dao/UserInforDao.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/UserInforMapper.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/pojo/UserInfor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/service/impl/CategoryServiceImpl.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/service/impl/UserInforSerciceImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/ssm/util/ZhenziSms.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml" charset="GBK" />
