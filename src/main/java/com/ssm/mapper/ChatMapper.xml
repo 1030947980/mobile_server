@@ -5,5 +5,14 @@
 
 <mapper namespace="com.ssm.dao.ChatDao">
 
+    <!--获取聊天消息，将c.chat_id==#{chat_id}即可为与某用户的聊天id-->
+    <!--SELECT c.chat_id,c.from_id,c.to_id,c.message,c.time,u.user_name,u.user_avatar-->
+    <!--FROM user_tab u INNER JOIN chatMessage_tab c-->
+    <!--ON u.user_id = c.from_id-->
+    <!--WHERE c.chat_id =1-->
+
+    <!--获取与本人聊天的所有用户-->
+
+
 </mapper>
 
