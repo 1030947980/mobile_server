@@ -5,14 +5,39 @@
 
 <mapper namespace="com.ssm.dao.ChatDao">
 
+
+    <insert id="sendMessage">
+      insert into chatMessage_tab (chat_id,from_id,to_id,message,chat_time)
+      values (#{chat_id},#{from_id},#{to_id},#{message},#{chat_time})
+    </insert>
     <!--获取聊天消息，将c.chat_id==#{chat_id}即可为与某用户的聊天id-->
-    <!--SELECT c.chat_id,c.from_id,c.to_id,c.message,c.time,u.user_name,u.user_avatar-->
-    <!--FROM user_tab u INNER JOIN chatMessage_tab c-->
-    <!--ON u.user_id = c.from_id-->
-    <!--WHERE c.chat_id =1-->
+    <select id="getChatByChatId" resultType="com.ssm.pojo.ChatMessage">
+      SELECT c.chat_id,c.from_id,c.to_id,c.message,c.chat_time,u.user_name,u.user_avatar
+      FROM user_tab u INNER JOIN chatMessage_tab c
+      ON u.user_id = c.from_id
+    WHERE c.chat_id =#{chat_id}
+    ORDER 	BY c.chat_time ASC
+    </select>
 
-    <!--获取与本人聊天的所有用户-->
 
+    <!--查询chat_id-->
+    <select id="getChatId" resultType="java.lang.Integer">
+        select chat_id from chatUser_tab
+        WHERE (user_id1=#{0} and user_id2=#{1}) OR(user_id2=#{0} and user_id1=#{1})
+    </select>
+
+    <!--获取某用户的所有聊天用户-->
+    <select id="getChatUser" resultType="com.ssm.pojo.ChatUser">
+        SELECT c.chat_id,u.user_name,u.user_avatar,u.user_id
+        FROM user_tab u INNER JOIN chatMessage_tab c
+        ON u.user_id = c.to_id
+        WHERE c.from_id =#{0}
+        UNION
+        SELECT c.chat_id,u.user_name,u.user_avatar,u.user_id
+        FROM user_tab u INNER JOIN chatMessage_tab c
+        ON u.user_id = c.from_id
+        WHERE c.to_id =#{0}
+    </select>
 
 </mapper>
 

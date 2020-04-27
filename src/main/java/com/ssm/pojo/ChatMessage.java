@@ -1,6 +1,5 @@
 package com.ssm.pojo;
 
-import java.math.BigInteger;
 
 public class ChatMessage {
     private int chat_id;
@@ -8,7 +7,7 @@ public class ChatMessage {
     private int to_id;
     private String message;
     //头像都是发送者的 与用户表连接获取信息
-    private long time;
+    private long chat_time;
     private String user_name;
     private String user_avatar;
 
@@ -44,12 +43,12 @@ public class ChatMessage {
         this.message = message;
     }
 
-    public long getTime() {
-        return time;
+    public long getChat_time() {
+        return chat_time;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setChat_time(long chat_time) {
+        this.chat_time = chat_time;
     }
 
     public String getUser_name() {
