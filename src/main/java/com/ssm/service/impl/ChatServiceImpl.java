@@ -34,12 +34,21 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public int getChatId(int user_id1, int user_id2) {
+    public String getChatId(int user_id1, int user_id2) {
         return chatDao.getChatId(user_id1,user_id2);
     }
 
     @Override
     public List<ChatUser> getChatUser(int user_id) {
         return chatDao.getChatUser(user_id);
+    }
+
+    @Override
+    public String newChat(int user_id1,int user_id2) {
+        if(chatDao.getChatId(user_id1, user_id2)==null){
+            chatDao.newChat(user_id1, user_id2);
+            return "SUCCESS";
+        }
+        return "EXIST";
     }
 }
