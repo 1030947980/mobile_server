@@ -42,4 +42,25 @@ public interface UserInforDao {
      * @return 用户
      */
     List<UserInfor> findAllUser();
+
+    /**
+     * 更改用户状态
+     * @param user_id
+     * @param user_state
+     * @return
+     */
+    int editUserState(int user_id,int user_state);
+
+    /**
+     * 获取分页用户
+     * @param currentIndex
+     * @return
+     */
+    List<UserInfor> getPageUserInfor(int currentIndex);
+
+    /**
+     * 获取用户总数
+     * @return
+     */
+    int getUserTotal();
 }

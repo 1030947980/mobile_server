@@ -71,7 +71,16 @@ public class UserInforController {
     public UserInfor findUserByNickName(@RequestParam("nickName") String nickName){
         return userInforService.findUserByNickName(nickName);
     }
-
+    //获取分页用户
+    @RequestMapping("/getPageUserInfor")
+    public List<UserInfor> getPageUserInfor(@RequestParam("current_page")int current_page){
+        return userInforService.getPageUserInfor(current_page);
+    }
+    //获取用户总数
+    @RequestMapping("/getUserTotal")
+    public int getUserTotal(){
+        return userInforService.getUserTotal();
+    }
     //获取所有用户
     @RequestMapping("/findAllUser")
     public List<UserInfor> findAll(){
@@ -104,6 +113,12 @@ public class UserInforController {
     public String changePassword(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("oldPassword") String oldPassword
             ,@RequestParam("newPassword") String newPassword){
         return userInforService.editUserPassword(id,name,oldPassword,newPassword);
+    }
+
+    //修改状态
+    @RequestMapping("/editUserState")
+    public void editUserState(@RequestParam("user_id") int user_id,@RequestParam("user_state") int user_state){
+        userInforService.editUserState(user_id,user_state);
     }
 
     //发送注册短信  将phone code加入到cookie中并且设置时长为5分钟

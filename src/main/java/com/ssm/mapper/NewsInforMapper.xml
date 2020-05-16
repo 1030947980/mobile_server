@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.NewsDao">
+
+    <select id="getAllNewsInfor" resultType="com.ssm.pojo.NewsInfor">
+      select * from news_tab
+    </select>
+
+    <select id="getNewsTotal" resultType="java.lang.Integer">
+        select count(*) as count from news_tab
+    </select>
+
+    <select id="getPageNewsInfor" resultType="com.ssm.pojo.NewsInfor">
+        select * from news_tab limit #{0}, 15;
+    </select>
+
+
+    <update id="changeNewsState">
+        update news_tab
+        set news_state = #{1}
+        where news_id =#{0}
+    </update>
+    <update id="changeNewsCommentState">
+        update newsComment_tab
+        set comment_state = #{1}
+        where comment_id = #{0}
+    </update>
+
+    <select id="getAllNewsComment" resultType="com.ssm.pojo.NewsComment">
+      select n.comment_id,n.news_id,u.user_id,u.user_nickname,n.comment_content,n.comment_time,n.comment_state,news_tab.news_title
+      from newsComment_tab as n ,user_tab as u,news_tab
+      where n.user_id = u.user_id and n.news_id = news_tab.news_id
+    </select>
+
+    <select id="getNewsCommentTotal" resultType="java.lang.Integer">
+        select count(*) as count from newsComment_tab
+    </select>
+
+    <select id="getPageNewsComment" resultType="com.ssm.pojo.NewsComment">
+      select n.comment_id,n.news_id,u.user_id,u.user_nickname,n.comment_content,n.comment_time,n.comment_state,news_tab.news_title
+      from newsComment_tab as n ,user_tab as u,news_tab
+      where n.user_id = u.user_id and n.news_id = news_tab.news_id
+      limit #{0}, 15;
+    </select>
+
+
+</mapper>
+

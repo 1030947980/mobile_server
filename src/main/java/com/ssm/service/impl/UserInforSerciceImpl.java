@@ -291,4 +291,20 @@ public class UserInforSerciceImpl implements UserInforService {
     public List<UserInfor> findAllUser() {
         return userInforDao.findAllUser();
     }
+
+    @Override
+    public List<UserInfor> getPageUserInfor(int current_page) {
+        int currentIndex = (current_page-1)*15;
+        return userInforDao.getPageUserInfor(currentIndex);
+    }
+
+    @Override
+    public void editUserState(int user_id, int user_state) {
+        userInforDao.editUserState(user_id, user_state);
+    }
+
+    @Override
+    public int getUserTotal() {
+        return userInforDao.getUserTotal();
+    }
 }
