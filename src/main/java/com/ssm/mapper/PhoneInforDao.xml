@@ -4,9 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssm.dao.PhoneInforDao">
-
-
-
+    <select id="getAllPhoneInfor" resultType="com.ssm.pojo.PhoneInfor">
+        select *  from phoneInfor_tab
+    </select>
+    <select id="getPagePhoneInfor" resultType="com.ssm.pojo.PhoneInfor">
+        select *  from phoneInfor_tab
+        LIMIT #{0},#{1};
+    </select>
+    <select id="getPhoneInforTotal" resultType="java.lang.Integer">
+        select count(*) as count from phoneInfor_tab
+    </select>
+    <update id="changePhoneInforState">
+        update phoneInfor_tab
+        set phone_state = #{1}
+        where phone_id = #{0}
+    </update>
 
 </mapper>
 

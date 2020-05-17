@@ -2,6 +2,7 @@ package com.ssm.dao;
 
 import com.ssm.pojo.NewsComment;
 import com.ssm.pojo.NewsInfor;
+import com.ssm.pojo.Replay;
 
 import java.util.List;
 
@@ -52,4 +53,32 @@ public interface NewsDao {
      * 更改评论状态
      */
     int changeNewsCommentState(int comment_id,int comment_state);
+
+    /**
+     * 获取所有资讯回复
+     * @return
+     */
+    List<Replay> getAllNewsReplay();
+
+    /**
+     * 获取分页资讯回复
+     * @param currentIndex
+     * @return
+     */
+    List<Replay> getPageNewsReplay(int currentIndex);
+
+    /**
+     * 获取回复总数
+     * @return
+     */
+    int getNewsReplayTotal();
+
+    /**
+     * 改变资讯回复状态
+     * @param replay_id
+     * @param replay_state
+     * @return
+     */
+    int changeNewsReplayState(int replay_id,int replay_state);
+
 }

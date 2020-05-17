@@ -4,9 +4,69 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssm.dao.ArticalDao">
-
-
-
-
+    <!--发帖-->
+    <select id="getAllAticalInfor" resultType="com.ssm.pojo.ArticalInfor">
+      select a.*,u.user_nickname from artical_tab a,user_tab u
+      where a.user_id = u.user_id
+    </select>
+    <select id="getPageArticalInfor" resultType="com.ssm.pojo.ArticalInfor">
+      select a.*,u.user_nickname from artical_tab a,user_tab u
+      where a.user_id = u.user_id
+      limit #{0}, 15;
+    </select>
+    <select id="getArticalTotal" resultType="java.lang.Integer">
+      select count(*) as count from artical_tab
+    </select>
+    <update id="changeArticalState">
+      update artical_tab
+        set artical_state = #{1}
+        where artical_id =#{0}
+    </update>
+    <!--发帖回复-->
+    <select id="getAllArticalComment" resultType="com.ssm.pojo.ArticalComment">
+      select a.comment_id,a.artical_id,u.user_id,u.user_nickname,a.comment_content,a.comment_time,a.comment_state,artical_tab.artical_title
+      from articalComment_tab as a ,user_tab as u,artical_tab
+      where a.user_id = u.user_id and a.artical_id = artical_tab.artical_id
+    </select>
+    <select id="getPageArticalComment" resultType="com.ssm.pojo.ArticalComment">
+      select a.comment_id,a.artical_id,u.user_id,u.user_nickname,a.comment_content,a.comment_time,a.comment_state,artical_tab.artical_title
+      from articalComment_tab as a ,user_tab as u,artical_tab
+      where a.user_id = u.user_id and a.artical_id = artical_tab.artical_id
+      limit #{0},15
+    </select>
+    <select id="getArticalCommentTotal" resultType="java.lang.Integer">
+      select count(*) as count from articalComment_tab
+    </select>
+    <update id="changeArticalCommentState">
+        update articalComment_tab
+        set comment_state = #{1}
+        where comment_id =#{0}
+    </update>
+    <!--发帖回复-->
+    <select id="getAllArticalReplay" resultType="com.ssm.pojo.Replay">
+        select A.*,user2.user_nickname as replay_user FROM user_tab as user2
+        INNER JOIN
+        (select r.replay_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        from articalComment_tab as n ,user_tab as u,articalReplay_comment as r
+        where r.comment_id = n.comment_id and u.user_id =n.user_id) A
+        on A.replayUser_id = user2.user_id
+    </select>
+    <select id="getPageArticalReplay" resultType="com.ssm.pojo.Replay">
+        select A.*,user2.user_nickname as replay_user FROM user_tab as user2
+        INNER JOIN
+        (select r.replay_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        from articalComment_tab as n ,user_tab as u,articalReplay_comment as r
+        where r.comment_id = n.comment_id and u.user_id =n.user_id) A
+        on A.replayUser_id = user2.user_id
+        limit #{0},15
+    </select>
+    <select id="getArticalReplayTotal" resultType="java.lang.Integer">
+        select count(*) as count from articalReplay_comment
+    </select>
+    <update id="changeArticalReplayState">
+        update articalReplay_comment
+        set replay_state = #{1}
+        where replay_id =#{0}
+    </update>
 </mapper>
 
