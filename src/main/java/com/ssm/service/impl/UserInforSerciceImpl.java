@@ -195,6 +195,15 @@ public class UserInforSerciceImpl implements UserInforService {
         return "SUCCESS";
     }
 
+    @Override
+    public String updateUserAvatar(int id, String avatar) {
+        UserInfor userInfor = new UserInfor();
+        userInfor.setUser_id(id);
+        userInfor.setUser_avatar(avatar);
+        userInforDao.updateUserInfor(userInfor);
+        return "SUCCESS";
+    }
+
     /**
      *  修改用户昵称
      * @param id ,nickName

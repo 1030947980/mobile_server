@@ -95,6 +95,13 @@ public class UserInforController {
 
         return userInforService.updateUserInfor(id,name,nickName,avatar,sex,phone);
     }
+    //修改用户头像
+    @RequestMapping("/updateUserAvatar")
+    public String updateUserAvatar(@RequestParam("id")int id,
+                                   @RequestParam("avatar")String avatar){
+
+        return userInforService.updateUserAvatar(id,avatar);
+    }
 
     //修改昵称
     @RequestMapping("/editUserNickName")

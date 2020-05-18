@@ -14,6 +14,7 @@ public interface UserInforService {
     Boolean userNameCheck(String name);
     Boolean phoneCheck(String phone);
     String updateUserInfor(int id,String name,String nickName,String avatar,String sex,String phone);
+    String updateUserAvatar(int id,String avatar);
     String editUserNickName(int id,String nickName);
     String editUserSex(int id,String sex);
     String editUserPassword(int id,String name,String oldPassword,String newPassword);

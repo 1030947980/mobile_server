@@ -19,6 +19,10 @@ public class ArticalController {
     /**
      * 发帖
      */
+    @RequestMapping("/uploadImg")
+    public String uploadImg(){
+        return "SUCCESS";
+    }
     @RequestMapping("/getAllAticalInfor")
     public List<ArticalInfor> getAllAticalInfor(){
         return articalService.getAllAticalInfor();
