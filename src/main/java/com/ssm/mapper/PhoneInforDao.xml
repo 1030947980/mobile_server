@@ -5,14 +5,18 @@
 
 <mapper namespace="com.ssm.dao.PhoneInforDao">
     <select id="getAllPhoneInfor" resultType="com.ssm.pojo.PhoneInfor">
-        select *  from phoneInfor_tab
+        select phone_id,phone_model,phone_img,phone_price,phone_type,phone_market,phone_state from phoneInfor_tab
     </select>
     <select id="getPagePhoneInfor" resultType="com.ssm.pojo.PhoneInfor">
-        select *  from phoneInfor_tab
+        select phone_id,phone_model,phone_img,phone_price,phone_type,phone_market,phone_state from phoneInfor_tab
         LIMIT #{0},#{1};
     </select>
     <select id="getPhoneInforTotal" resultType="java.lang.Integer">
         select count(*) as count from phoneInfor_tab
+    </select>
+    <select id="getPhoneHardwareInfor" resultType="java.lang.String">
+        select phone_infor from phoneInfor_tab
+       WHERE phone_id=#{0}
     </select>
     <update id="changePhoneInforState">
         update phoneInfor_tab

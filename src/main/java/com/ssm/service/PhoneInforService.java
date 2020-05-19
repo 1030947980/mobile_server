@@ -9,4 +9,5 @@ public interface PhoneInforService {
     List<PhoneInfor> getPagePhoneInfor(int current_page,int pageSize);
     int getPhoneInforTotal();
     void changePhoneInforState(int phone_id,int phone_state);
+    String getPhoneHardwareInfor(int phone_id);
 }

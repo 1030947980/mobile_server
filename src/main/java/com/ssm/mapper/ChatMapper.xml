@@ -33,7 +33,7 @@
 
     <!--获取某用户的所有聊天用户-->
     <select id="getChatUser" resultType="com.ssm.pojo.ChatUser">
-        SELECT c.chat_id,u.user_id,u.user_nickname,u.user_avatar from chatUser_tab as c,user_tab as u
+        SELECT c.chat_id,u.user_id,u.user_nickname as user_name,u.user_avatar from chatUser_tab as c,user_tab as u
         where (user_id1 =#{0} and user_id = user_id2) or(user_id2 =#{0} and user_id = user_id1)
     </select>
 

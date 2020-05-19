@@ -32,4 +32,8 @@ public class PhoneInforController {
                                       @RequestParam("phone_state")int phone_state){
         phoneInforService.changePhoneInforState(phone_id, phone_state);
     }
+    @RequestMapping("/getPhoneHardwareInfor")
+    public String getPhoneHardwareInfor(@RequestParam("phone_id")int phone_id){
+        return phoneInforService.getPhoneHardwareInfor(phone_id);
+    }
 }

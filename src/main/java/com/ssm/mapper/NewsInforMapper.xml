@@ -55,7 +55,7 @@
     <select id="getAllNewsReplay" resultType="com.ssm.pojo.Replay">
         select A.*,user2.user_nickname as replay_user FROM user_tab as user2
         INNER JOIN
-        (select r.replay_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        (select r.replay_id,r.comment_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
         from newsComment_tab as n ,user_tab as u,newsReplay_comment as r
         where r.comment_id = n.comment_id and u.user_id =n.user_id) A
         on A.replayUser_id = user2.user_id
@@ -65,7 +65,7 @@
 
         select A.*,user2.user_nickname as replay_user FROM user_tab as user2
         INNER JOIN
-        (select r.replay_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        (select r.replay_id,r.comment_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
         from newsComment_tab as n ,user_tab as u,newsReplay_comment as r
         where r.comment_id = n.comment_id and u.user_id =n.user_id) A
         on A.replayUser_id = user2.user_id LIMIT #{0},15;

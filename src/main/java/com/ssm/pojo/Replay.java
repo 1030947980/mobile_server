@@ -4,6 +4,7 @@ public class Replay {
     private int replay_id;
     private int user_id;
     private String comment_user;
+    private int comment_id;
     private String comment_content;
     private int replayUser_id;
     private String replay_user;
@@ -25,6 +26,14 @@ public class Replay {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public int getComment_id() {
+        return comment_id;
+    }
+
+    public void setComment_id(int comment_id) {
+        this.comment_id = comment_id;
     }
 
     public String getComment_user() {
