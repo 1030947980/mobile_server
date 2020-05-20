@@ -8,15 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b3e46eb6-7928-4603-9255-55c9ccbc1f20" name="Default" comment=" as">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/controller/PhoneInforController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/controller/PhoneInforController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/dao/PhoneInforDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/dao/PhoneInforDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ChatMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ChatMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/PhoneInforDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/mapper/PhoneInforDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/pojo/Replay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/pojo/Replay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/service/PhoneInforService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/service/PhoneInforService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ssm/service/impl/PhoneInforServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ssm/service/impl/PhoneInforServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ssm.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/ssm.war" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,7 +42,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/controller/PhoneInforController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state>
               <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -61,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/service/PhoneInforService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="252">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,12 +66,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/service/impl/PhoneInforServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
+            <state relative-caret-position="756">
               <caret line="38" column="50" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1081#1082#0" expanded="true" />
-                <element signature="e#1108#1109#0" expanded="true" />
+                <element signature="e#1149#1150#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -87,8 +80,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/dao/PhoneInforDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            <state relative-caret-position="252">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,11 +89,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/PhoneInforDao.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="308">
+              <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -186,8 +197,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/service/UserInforService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/service/impl/UserInforSerciceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/controller/UserInforController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/pojo/Replay.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ChatMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/dao/PhoneInforDao.java" />
@@ -195,6 +204,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/service/impl/PhoneInforServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/controller/PhoneInforController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ssm/mapper/PhoneInforDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml" />
       </list>
     </option>
   </component>
@@ -248,6 +259,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -390,14 +402,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="cate*.xml&#9;FILE&#9;file://E:/project/ssm/src/main/java/com/how2java/mapper/Category.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589910355321" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589912184410" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../16se01_gr10/zhihuServer" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -692,7 +703,8 @@
       <workItem from="1589422465604" duration="1359000" />
       <workItem from="1589515157344" duration="61942000" />
       <workItem from="1589777218806" duration="5728000" />
-      <workItem from="1589854664999" duration="8442000" />
+      <workItem from="1589854664999" duration="10867000" />
+      <workItem from="1589937831284" duration="747000" />
     </task>
     <task id="LOCAL-00001" summary="assa">
       <created>1585985578802</created>
@@ -855,11 +867,18 @@
       <option name="project" value="LOCAL" />
       <updated>1589816855900</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=" as">
+      <created>1589910373750</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1589910373751</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313269000" />
+    <option name="totallyTimeSpent" value="316441000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -874,7 +893,7 @@
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.499002" visible="true" weight="0.27144772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.499002" visible="true" weight="0.24128686" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -884,7 +903,7 @@
       <window_info id="Web" order="7" sideWeight="0.500998" side_tool="true" weight="0.27345845" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3297587" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798927" visible="true" weight="0.16353887" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49798927" weight="0.19168901" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -907,7 +926,7 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Database" order="8" weight="0.3297587" />
-      <window_info anchor="right" id="Maven" order="9" visible="true" weight="0.06434316" />
+      <window_info anchor="right" id="Maven" order="9" visible="true" weight="0.1541555" />
       <window_info anchor="right" id="JSF" order="10" />
       <window_info anchor="right" id="CDI" order="11" />
       <window_info anchor="right" id="Bean Validation" order="12" />
@@ -1089,13 +1108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1176">
           <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1566,20 +1578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="52" column="13" lean-forward="true" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/controller/ChatController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
@@ -1587,20 +1585,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/ChatMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1064">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/UserInforMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1627,9 +1611,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/controller/PhoneInforController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state>
           <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1639,8 +1630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/service/PhoneInforService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="252">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1649,30 +1640,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/service/impl/PhoneInforServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
+        <state relative-caret-position="756">
           <caret line="38" column="50" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1081#1082#0" expanded="true" />
-            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/dao/PhoneInforDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        <state relative-caret-position="252">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/UserInforMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="17" column="33" lean-forward="true" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/PhoneInforDao.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="308">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/ChatMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/NewsInforMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ssm/mapper/ArticalMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -8,10 +8,12 @@
     <select id="getAllAticalInfor" resultType="com.ssm.pojo.ArticalInfor">
       select a.*,u.user_nickname from artical_tab a,user_tab u
       where a.user_id = u.user_id
+      ORDER BY a.artical_time DESC
     </select>
     <select id="getPageArticalInfor" resultType="com.ssm.pojo.ArticalInfor">
       select a.*,u.user_nickname from artical_tab a,user_tab u
       where a.user_id = u.user_id
+      ORDER BY a.artical_time DESC
       limit #{0}, 15;
     </select>
     <select id="getArticalTotal" resultType="java.lang.Integer">
