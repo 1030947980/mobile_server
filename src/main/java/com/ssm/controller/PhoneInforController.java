@@ -36,4 +36,10 @@ public class PhoneInforController {
     public String getPhoneHardwareInfor(@RequestParam("phone_id")int phone_id){
         return phoneInforService.getPhoneHardwareInfor(phone_id);
     }
+
+    @RequestMapping("/getPhoneInforById")
+    public PhoneInfor getPhoneInforById(@RequestParam("phone_id")int phone_id){
+        return phoneInforService.getPhoneInforById(phone_id);
+    }
+
 }

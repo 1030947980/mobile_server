@@ -66,11 +66,12 @@
         </where>
     </select>
 
+
     <select id="findAllUser" resultType="com.ssm.pojo.UserInfor">
-      select user_id,user_name,user_nickname,user_avatar,user_sex,user_phone,user_state from user_tab
+      select user_id,user_name,user_nickname,user_sex,user_phone,user_state from user_tab
     </select>
     <select id="getPageUserInfor" resultType="com.ssm.pojo.UserInfor">
-        select * from user_tab limit #{0}, 15;
+        select user_id,user_name,user_nickname,user_sex,user_phone,user_state from user_tab limit #{0}, 15;
     </select>
     <select id="getUserTotal" resultType="java.lang.Integer">
         select count(*) as count from user_tab

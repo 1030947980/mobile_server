@@ -6,6 +6,7 @@
 <mapper namespace="com.ssm.dao.PhoneInforDao">
     <select id="getAllPhoneInfor" resultType="com.ssm.pojo.PhoneInfor">
         select phone_id,phone_model,phone_img,phone_price,phone_type,phone_market,phone_state from phoneInfor_tab
+        where phone_state=0
     </select>
     <select id="getPagePhoneInfor" resultType="com.ssm.pojo.PhoneInfor">
         select phone_id,phone_model,phone_img,phone_price,phone_type,phone_market,phone_state from phoneInfor_tab
@@ -23,6 +24,16 @@
         set phone_state = #{1}
         where phone_id = #{0}
     </update>
+    <select id="getPhoneInforByCondition" resultType="com.ssm.pojo.PhoneInfor">
+        select phone_id,phone_model,phone_img,phone_price,phone_type,phone_market,phone_state from phoneInfor_tab p
+        WHERE CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &gt; 3000 and CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &lt; 4000
+        LIMIT #{0},{1};
 
+    </select>
+    <select id="getPhoneInforById" resultType="com.ssm.pojo.PhoneInfor">
+        select * from phoneInfor_tab
+        where phone_id =#{0}
+
+    </select>
 </mapper>
 

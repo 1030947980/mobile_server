@@ -12,4 +12,6 @@ public interface PhoneInforDao {
     int getPhoneInforTotal();
     int changePhoneInforState(int phone_id,int phone_state);
     String getPhoneHardwareInfor(int phone_id);
+    PhoneInfor getPhoneInforById(int phone_id);
+    List<PhoneInfor> getPhoneInforByCondition();
 }

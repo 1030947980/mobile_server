@@ -167,7 +167,7 @@ public class UserInforSerciceImpl implements UserInforService {
     public Boolean userNameCheck(String name) {
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_name(name);
-        return userInforDao.findByCondition(userInfor)==null;
+        return userInforDao.findUser(userInfor)==null;
     }
     /**
      * 手机是否已被绑定
@@ -176,7 +176,7 @@ public class UserInforSerciceImpl implements UserInforService {
     public Boolean phoneCheck(String phone) {
         UserInfor userInfor = new UserInfor();
         userInfor.setUser_phone(phone);
-        return userInforDao.findByCondition(userInfor)==null;
+        return userInforDao.findUser(userInfor)==null;
     }
 
     /**

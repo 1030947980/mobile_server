@@ -38,4 +38,9 @@ public class PhoneInforServiceImpl implements PhoneInforService {
     public String getPhoneHardwareInfor(int phone_id) {
         return phoneInforDao.getPhoneHardwareInfor(phone_id);
     }
+
+    @Override
+    public PhoneInfor getPhoneInforById(int phone_id) {
+        return phoneInforDao.getPhoneInforById(phone_id);
+    }
 }

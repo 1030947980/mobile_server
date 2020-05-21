@@ -20,13 +20,13 @@ public interface UserInforDao {
      */
     int updateUserInfor(UserInfor userInfor);
     /**
-     * 查询用户，name、phone,用于登陆
+     * 查询用户，name、phone,用于登陆 查询用户所是否存在
      * @param userInfor 用户（id/name/phone）
      * @return userInfor
      */
     UserInfor findUser(UserInfor userInfor);
     /**
-     * 查询用户，name、phone,id,nickname
+     * 查询用户，name、phone,id,nickname  用于用户搜索其他用户
      * @param userInfor 用户（id/name/phone）
      * @return userInfor
      */
@@ -38,13 +38,13 @@ public interface UserInforDao {
      */
 //    int changePassword(UserInfor userInfor);
     /**
-     * 获取所有用户
+     * 获取所有用户 用于用户查寻所有用户。
      * @return 用户
      */
     List<UserInfor> findAllUser();
 
     /**
-     * 更改用户状态
+     * 更改用户状态 管理员调用，用户注销
      * @param user_id
      * @param user_state
      * @return
@@ -52,15 +52,16 @@ public interface UserInforDao {
     int editUserState(int user_id,int user_state);
 
     /**
-     * 获取分页用户
+     * 获取分页用户 管理员调用
      * @param currentIndex
      * @return
      */
     List<UserInfor> getPageUserInfor(int currentIndex);
 
     /**
-     * 获取用户总数
+     * 获取用户总数 管理员调用
      * @return
      */
     int getUserTotal();
+
 }
