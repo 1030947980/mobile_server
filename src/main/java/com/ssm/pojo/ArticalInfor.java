@@ -5,11 +5,29 @@ public class ArticalInfor {
     private int user_id;
     private String user_nickname;
     private String artical_title;
+    private String artical_describe;
     private String artical_content;
     private String artical_imgUrl;
     private String artical_time;
     private int artical_collection;
+    private int artical_views;
     private int artical_state;
+
+    public int getArtical_views() {
+        return artical_views;
+    }
+
+    public void setArtical_views(int artical_views) {
+        this.artical_views = artical_views;
+    }
+
+    public String getArtical_describe() {
+        return artical_describe;
+    }
+
+    public void setArtical_describe(String artical_describe) {
+        this.artical_describe = artical_describe;
+    }
 
     public int getArtical_id() {
         return artical_id;
