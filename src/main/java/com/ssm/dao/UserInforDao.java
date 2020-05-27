@@ -32,11 +32,10 @@ public interface UserInforDao {
      */
     UserInfor findByCondition(UserInfor userInfor);
     /**
-     * 修改密码
-     * @param userInfor 修改密码
+     * 修改密码 管理员
      * @return
      */
-//    int changePassword(UserInfor userInfor);
+    int changePassword(String user_name,String user_password);
     /**
      * 获取所有用户 用于用户查寻所有用户。
      * @return 用户
@@ -63,5 +62,6 @@ public interface UserInforDao {
      * @return
      */
     int getUserTotal();
+
 
 }

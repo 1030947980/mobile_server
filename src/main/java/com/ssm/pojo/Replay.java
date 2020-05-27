@@ -2,15 +2,26 @@ package com.ssm.pojo;
 
 public class Replay {
     private int replay_id;
+    //被回复的用户
     private int user_id;
     private String comment_user;
     private int comment_id;
     private String comment_content;
+    //发表回复的用户
     private int replayUser_id;
+    private String replay_avatar;
     private String replay_user;
     private String replay_content;
     private String replay_time;
     private int replay_state;
+
+    public String getReplay_avatar() {
+        return replay_avatar;
+    }
+
+    public void setReplay_avatar(String replay_avatar) {
+        this.replay_avatar = replay_avatar;
+    }
 
     public int getReplay_id() {
         return replay_id;

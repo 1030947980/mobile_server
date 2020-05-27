@@ -316,4 +316,16 @@ public class UserInforSerciceImpl implements UserInforService {
     public int getUserTotal() {
         return userInforDao.getUserTotal();
     }
+
+    @Override
+    public String changePassword(String user_name, String user_password) {
+        UserInfor userInfor = new UserInfor();
+        userInfor.setUser_name(user_name);
+        if(userInforDao.findByCondition(userInfor)==null){
+            return "NONE";
+        }
+        String md5user_password=MD5.getInstance().computeMD5(user_password,user_name);
+        userInforDao.changePassword(user_name, md5user_password);
+        return "SUCCESS";
+    }
 }

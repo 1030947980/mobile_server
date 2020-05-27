@@ -2,13 +2,26 @@ package com.ssm.pojo;
 
 public class NewsComment {
     private int comment_id;
+    //
     private int news_id;
     private String news_title;
+    //
+    private String user_avatar;
     private int user_id;
     private String user_nickname;
+    //
     private String comment_content;
+    //
     private String comment_time;
     private int comment_state;
+
+    public String getUser_avatar() {
+        return user_avatar;
+    }
+
+    public void setUser_avatar(String user_avatar) {
+        this.user_avatar = user_avatar;
+    }
 
     public int getComment_id() {
         return comment_id;

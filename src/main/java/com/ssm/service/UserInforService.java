@@ -26,4 +26,5 @@ public interface UserInforService {
     List<UserInfor> getPageUserInfor(int current_page);
     void editUserState(int user_id, int user_state);
     int getUserTotal();
+    String changePassword(String user_name,String user_password);
 }

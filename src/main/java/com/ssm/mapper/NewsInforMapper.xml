@@ -5,8 +5,9 @@
 
 <mapper namespace="com.ssm.dao.NewsDao">
 
+
     <select id="getAllNewsInfor" resultType="com.ssm.pojo.NewsInfor">
-      select * from news_tab
+      select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
       ORDER BY news_time DESC
     </select>
 
@@ -14,10 +15,15 @@
         select count(*) as count from news_tab
     </select>
 
+    <select id="getNewsInforById" resultType="com.ssm.pojo.NewsInfor">
+      select * from news_tab
+      where news_id = #{0}
+    </select>
+
     <select id="getPageNewsInfor" resultType="com.ssm.pojo.NewsInfor">
-        select * from news_tab
+        select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
         ORDER BY news_time DESC
-        limit #{0}, 15;
+        limit #{0}, #{1};
     </select>
 
 
@@ -32,10 +38,25 @@
         where comment_id = #{0}
     </update>
 
+    <insert id="sendCommentNews">
+        insert into newsComment_tab (user_id,news_id,comment_content,comment_time)
+        values (#{user_id},#{news_id},#{comment_content},#{comment_time})
+    </insert>
+    <insert id="sendReplayNews">
+        insert into newsReplay_comment (replayUser_id,comment_id,replay_content,replay_time)
+        values (#{replayUser_id},#{comment_id},#{replay_content},#{replay_time})
+    </insert>
+
     <update id="changeNewsReplayState">
         update newsReplay_comment
         set replay_state = #{1}
         where replay_id = #{0}
+    </update>
+
+    <update id="collecdtNews">
+        UPDATE news_tab
+        set news_collection =news_collection +1
+        WHERE news_id=#{0}
     </update>
 
     <select id="getAllNewsComment" resultType="com.ssm.pojo.NewsComment">
@@ -77,6 +98,93 @@
 
     <select id="getNewsReplayTotal" resultType="java.lang.Integer">
         select count(*) as count from newsReplay_comment
+    </select>
+
+    <select id="getRecommendNewsinfot" resultType="com.ssm.pojo.NewsInfor">
+        select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
+        order by news_collection desc
+        LIMIT #{0},#{1};
+    </select>
+
+    <select id="getRecommendNewsTotal" resultType="java.lang.Integer">
+        select count(*) as count from news_tab
+        order by news_collection desc
+    </select>
+
+    <select id="getHotNewsinfot" resultType="com.ssm.pojo.NewsInfor">
+        select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
+        where news_type like '%曝光%'
+        order by news_time desc
+        LIMIT #{0},#{1};
+    </select>
+
+    <select id="getHotNewsTotal" resultType="java.lang.Integer">
+        select count(*) as count from news_tab
+        where news_type like '%曝光%'
+        order by news_time desc
+    </select>
+
+    <select id="getNewNewsinfot" resultType="com.ssm.pojo.NewsInfor">
+        select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
+        order by news_time desc
+        LIMIT #{0},#{1};
+    </select>
+
+    <select id="getNewNewsTotal" resultType="java.lang.Integer">
+        select count(*) as count from news_tab
+        order by news_time desc
+    </select>
+
+    <select id="getBussinessNewsinfor" resultType="com.ssm.pojo.NewsInfor">
+      select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
+        <where>
+            <if test="bussiness1!=null and bussiness1.trim()!=''">
+                and news_type like concat('%',#{bussiness1},'%') OR news_content like concat('%',#{bussiness1},'%')
+            </if>
+            <if test="bussiness2!=null and bussiness2.trim()!=''">
+                and news_type like concat('%',#{bussiness2},'%') OR news_content like concat('%',#{bussiness2},'%')
+            </if>
+        </where>
+        order by news_time desc
+      LIMIT #{currentIndex},#{pageSize};
+    </select>
+    <select id="getBussinessNewsTotal" resultType="java.lang.Integer">
+      select count(*) as count from news_tab
+        <where>
+            <if test="bussiness1!=null and bussiness1.trim()!=''">
+                and news_type like concat('%',#{bussiness1},'%') OR news_content like concat('%',#{bussiness1},'%')
+            </if>
+            <if test="bussiness2!=null and bussiness2.trim()!=''">
+                and news_type like concat('%',#{bussiness2},'%') OR news_content like concat('%',#{bussiness2},'%')
+            </if>
+        </where>
+        order by news_time desc
+    </select>
+    <select id="getNewsCommentByNewsId" resultType="com.ssm.pojo.NewsComment">
+      select n.comment_id,n.news_id,u.user_id,u.user_nickname,u.user_avatar,n.comment_content,n.comment_time,n.comment_state,news_tab.news_title
+      from newsComment_tab as n ,user_tab as u,news_tab
+      where n.user_id = u.user_id and n.news_id = news_tab.news_id and n.news_id=#{0} and n.comment_state=0
+    </select>
+    <select id="getNewsReplayByCommentId" resultType="com.ssm.pojo.Replay">
+      select A.*,user2.user_nickname as replay_user,user2.user_avatar as replay_avatar FROM user_tab as user2
+        INNER JOIN
+        (select r.replay_id,r.comment_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        from newsComment_tab as n ,user_tab as u,newsReplay_comment as r
+        where r.comment_id = n.comment_id and u.user_id =n.user_id and r.comment_id=#{0} and r.replay_state=0) A
+        on A.replayUser_id = user2.user_id
+    </select>
+    <select id="getUserAllNewsCommentByUserId" resultType="com.ssm.pojo.NewsComment">
+      select n.comment_id,n.news_id,u.user_id,u.user_nickname,u.user_avatar,n.comment_content,n.comment_time,n.comment_state,news_tab.news_title
+      from newsComment_tab as n ,user_tab as u,news_tab
+      where n.user_id = u.user_id and n.news_id = news_tab.news_id and n.user_id=#{0} and n.comment_state=0
+    </select>
+    <select id="getUserAllNewsReplayByUserId" resultType="com.ssm.pojo.Replay">
+      select A.*,user2.user_nickname as replay_user,user2.user_avatar as replay_avatar FROM user_tab as user2
+        INNER JOIN
+        (select r.replay_id,r.comment_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        from newsComment_tab as n ,user_tab as u,newsReplay_comment as r
+        where r.comment_id = n.comment_id and u.user_id =n.user_id and r.replayUser_id=#{0} and r.replay_state=0) A
+        on A.replayUser_id = user2.user_id
     </select>
 
 

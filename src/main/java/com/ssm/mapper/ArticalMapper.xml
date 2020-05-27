@@ -6,15 +6,15 @@
 <mapper namespace="com.ssm.dao.ArticalDao">
     <!--发帖-->
     <select id="getAllAticalInfor" resultType="com.ssm.pojo.ArticalInfor">
-      select a.*,u.user_nickname from artical_tab a,user_tab u
+      select a.artical_id,a.artical_title,a.artical_describe,a.artical_time,a.artical_collection,a.artical_imgUrl,a.artical_views,a.artical_state,u.user_nickname from artical_tab a,user_tab u
       where a.user_id = u.user_id
       ORDER BY a.artical_time DESC
     </select>
     <select id="getPageArticalInfor" resultType="com.ssm.pojo.ArticalInfor">
-      select a.*,u.user_nickname from artical_tab a,user_tab u
+      select a.artical_id,a.artical_title,a.artical_describe,a.artical_time,a.artical_collection,a.artical_imgUrl,a.artical_views,a.artical_state,u.user_nickname from artical_tab a,user_tab u
       where a.user_id = u.user_id
       ORDER BY a.artical_time DESC
-      limit #{0}, 15;
+      limit #{0}, #{1};
     </select>
     <select id="getArticalTotal" resultType="java.lang.Integer">
       select count(*) as count from artical_tab
@@ -24,7 +24,47 @@
         set artical_state = #{1}
         where artical_id =#{0}
     </update>
-    <!--发帖回复-->
+    <select id="getArticalInforById" resultType="com.ssm.pojo.ArticalInfor">
+      select a.*,u.user_nickname from artical_tab a,user_tab u
+      where a.user_id = u.user_id and artical_id=#{0}
+    </select>
+    <select id="getAllArticalInforUser" resultType="com.ssm.pojo.ArticalInfor">
+      select a.artical_id,a.artical_title,a.artical_describe,a.artical_time,a.artical_collection,a.artical_imgUrl,a.artical_views,a.artical_state,u.user_nickname from artical_tab a,user_tab u
+      where a.user_id = u.user_id and a.artical_state=0 and a.user_id=#{0}
+      ORDER BY a.artical_time DESC
+    </select>
+
+    <select id="getPageUserPostArticalInfor" resultType="com.ssm.pojo.ArticalInfor">
+      select a.artical_id,a.artical_title,a.artical_describe,a.artical_time,a.artical_collection,a.artical_imgUrl,a.artical_views,a.artical_state,u.user_nickname from artical_tab a,user_tab u
+      where a.user_id = u.user_id and a.artical_state=0 and a.user_id=#{0}
+      ORDER BY a.artical_time DESC
+      limit #{1}, #{2};
+    </select>
+    <select id="getPageArticalInforUser" resultType="com.ssm.pojo.ArticalInfor">
+      select a.artical_id,a.artical_title,a.artical_describe,a.artical_time,a.artical_collection,a.artical_imgUrl,a.artical_views,a.artical_state,u.user_nickname from artical_tab a,user_tab u
+      where a.user_id = u.user_id and a.artical_state=0
+      ORDER BY a.artical_time DESC
+      limit #{0}, #{1};
+    </select>
+    <select id="getAllArticalInforUserTotal" resultType="java.lang.Integer">
+        select count(*) as count from artical_tab
+        where artical_state=0 and user_id=#{0}
+    </select>
+    <select id="getArticalTotalUser" resultType="java.lang.Integer">
+        select count(*) as count from artical_tab
+        where artical_state=0
+    </select>
+    <update id="viewsArtical">
+        UPDATE artical_tab
+        set artical_views =artical_views +1
+        WHERE artical_id=#{0}
+    </update>
+    <insert id="newArtical">
+        insert into artical_tab (user_id,artical_title,artical_describe,artical_content,artical_time,artical_imgUrl)
+        values (#{user_id},#{artical_title},#{artical_describe},#{artical_content},#{artical_time},#{artical_imgUrl})
+    </insert>
+
+    <!--发帖评论-->
     <select id="getAllArticalComment" resultType="com.ssm.pojo.ArticalComment">
       select a.comment_id,a.artical_id,u.user_id,u.user_nickname,a.comment_content,a.comment_time,a.comment_state,artical_tab.artical_title
       from articalComment_tab as a ,user_tab as u,artical_tab
@@ -44,6 +84,11 @@
         set comment_state = #{1}
         where comment_id =#{0}
     </update>
+    <insert id="sendCommentArtical">
+        insert into articalComment_tab (user_id,artical_id,comment_content,comment_time)
+        values (#{user_id},#{artical_id},#{comment_content},#{comment_time})
+    </insert>
+
     <!--发帖回复-->
     <select id="getAllArticalReplay" resultType="com.ssm.pojo.Replay">
         select A.*,user2.user_nickname as replay_user FROM user_tab as user2
@@ -65,10 +110,44 @@
     <select id="getArticalReplayTotal" resultType="java.lang.Integer">
         select count(*) as count from articalReplay_comment
     </select>
+
+    <select id="getArticalCommentByArticalId" resultType="com.ssm.pojo.ArticalComment">
+      select a.comment_id,a.artical_id,u.user_id,u.user_nickname,u.user_avatar,a.comment_content,a.comment_time,a.comment_state,artical_tab.artical_title
+      from articalComment_tab as a ,user_tab as u,artical_tab
+      where a.user_id = u.user_id and a.artical_id = artical_tab.artical_id and a.artical_id=#{0} and a.comment_state=0
+    </select>
+    <select id="getAllUserArticalCommentByuserId" resultType="com.ssm.pojo.ArticalComment">
+      select a.comment_id,a.artical_id,u.user_id,u.user_nickname,u.user_avatar,a.comment_content,a.comment_time,a.comment_state,artical_tab.artical_title
+      from articalComment_tab as a ,user_tab as u,artical_tab
+      where a.user_id = u.user_id and a.artical_id = artical_tab.artical_id and a.user_id=#{0} and a.comment_state=0
+    </select>
+    <select id="getArticalReplayByCommentId" resultType="com.ssm.pojo.Replay">
+      select A.*,user2.user_nickname as replay_user ,user2.user_avatar as replay_avatar FROM user_tab as user2
+        INNER JOIN
+        (select r.replay_id,r.comment_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        from articalComment_tab as n ,user_tab as u,articalReplay_comment as r
+        where r.comment_id = n.comment_id and u.user_id =n.user_id and r.comment_id=#{0} and r.replay_state=0 ) A
+        on A.replayUser_id = user2.user_id
+
+    </select>
+    <select id="getAllUserArticalReplayByuserId" resultType="com.ssm.pojo.Replay">
+      select A.*,user2.user_nickname as replay_user ,user2.user_avatar as replay_avatar FROM user_tab as user2
+        INNER JOIN
+        (select r.replay_id,r.comment_id,u.user_id,u.user_nickname as comment_user,n.comment_content,r.replayUser_id,r.replay_content,r.replay_time,r.replay_state
+        from articalComment_tab as n ,user_tab as u,articalReplay_comment as r
+        where r.comment_id = n.comment_id and u.user_id =n.user_id and r.replayUser_id=#{0} and r.replay_state=0 ) A
+        on A.replayUser_id = user2.user_id
+    </select>
     <update id="changeArticalReplayState">
         update articalReplay_comment
         set replay_state = #{1}
         where replay_id =#{0}
     </update>
+
+    <insert id="sendReplayArtical">
+        insert into articalReplay_comment (replayUser_id,comment_id,replay_content,replay_time)
+        values (#{replayUser_id},#{comment_id},#{replay_content},#{replay_time})
+    </insert>
+
 </mapper>
 

@@ -115,7 +115,7 @@ public class UserInforController {
         return userInforService.editUserSex(id,sex);
     }
 
-    //修改密码
+    //修改密码 用户使用
     @RequestMapping("/editUserPassword")
     public String changePassword(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("oldPassword") String oldPassword
             ,@RequestParam("newPassword") String newPassword){
@@ -166,5 +166,11 @@ public class UserInforController {
             response.addCookie(cookie);
             return "SUCCESS";
         }
+    }
+    //修改密码管理员
+    @RequestMapping("/changePassword")
+    public String changePassword(@RequestParam("user_name")String user_name,
+                               @RequestParam("user_password")String user_password){
+        return userInforService.changePassword(user_name, user_password);
     }
 }

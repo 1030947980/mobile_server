@@ -34,6 +34,11 @@
         where user_id = #{0}
 
     </update>
+    <update id="changePassword">
+        update user_tab
+        set user_password = #{1}
+        where user_name = #{0}
+    </update>
 
     <select id="findUser" resultType="com.ssm.pojo.UserInfor">
       select * from user_tab
