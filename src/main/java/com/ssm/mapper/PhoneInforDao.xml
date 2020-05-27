@@ -27,14 +27,96 @@
     <select id="getPhoneInforById" resultType="com.ssm.pojo.PhoneInfor">
         select * from phoneInfor_tab
         where phone_id =#{0}
-
     </select>
 
     <select id="getPhoneInforByCondition" resultType="com.ssm.pojo.PhoneInfor">
-        select phone_id,phone_model,phone_img,phone_price,phone_type,phone_market,phone_state from phoneInfor_tab p
-        WHERE CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &gt; 3000 and CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &lt; 4000
-        LIMIT #{0},#{1};
-
+        select phone_id,phone_model,phone_img,phone_price,phone_market from phoneInfor_tab p
+        <where>
+          <if test="pricelow != 0">
+              and CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &gt;= #{pricelow}
+          </if>
+          <if test="priceup != 0">
+              and CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &lt;= #{priceup}
+          </if>
+          <if test="sizelow !=0">
+              and CAST(
+                  SUBSTRING(
+                      p.phone_infor,CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',phone_infor) as SIGNED)+29,
+                      ABS(CAST(LOCATE('英寸">',phone_infor)as SIGNED )-CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',
+                      phone_infor) as SIGNED)+29)
+                  ) as DECIMAL(4,2)
+              ) &gt;= #{sizelow}
+          </if>
+          <if test="sizeup !=0">
+              and CAST(
+                  SUBSTRING(
+                      p.phone_infor,CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',phone_infor) as SIGNED)+29,
+                      ABS(CAST(LOCATE('英寸">',phone_infor)as SIGNED )-CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',
+                      phone_infor) as SIGNED)+29)
+                  ) as DECIMAL(4,2)
+              ) &lt;= #{sizeup}
+          </if>
+          <if test="phonecpu != null and phonecpu != ''">
+              and p.phone_infor like concat('%',#{phonecpu},'%')
+          </if>
+          <if test="phonetype != null and phonetype != ''">
+              and p.phone_type like concat('%',#{phonetype},'%')
+          </if>
+          <if test="phonenetwork != null and phonenetwork != ''">
+              and p.phone_infor like concat('%',#{phonenetwork},'%')
+          </if>
+          <if test="phoneappearance != null and phoneappearance != ''">
+             and p.phone_infor like concat('%',#{phoneappearance},'%')
+          </if>
+            and phone_state=0
+        </where>
+        LIMIT #{currentIndex},#{pageSize};
+    </select>
+    <select id="getPhoneInforByConditionTotal" resultType="java.lang.Integer">
+        select count(*) as count from phoneInfor_tab p
+        <where>
+            <if test="pricelow != 0">
+                and CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &gt;= #{pricelow}
+            </if>
+            <if test="priceup != 0">
+                and CAST(SUBSTRING(p.phone_price, 2) AS UNSIGNED) &lt;= #{priceup}
+            </if>
+            <if test="sizelow !=0">
+                and CAST(
+                SUBSTRING(
+                p.phone_infor,CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',phone_infor) as SIGNED)+29,
+                ABS(CAST(LOCATE('英寸">',phone_infor)as SIGNED )-CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',
+                phone_infor) as SIGNED)+29)
+                ) as DECIMAL(4,2)
+                ) &gt;= #{sizelow}
+            </if>
+            <if test="sizeup !=0">
+                and CAST(
+                SUBSTRING(
+                p.phone_infor,CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',phone_infor) as SIGNED)+29,
+                ABS(CAST(LOCATE('英寸">',phone_infor)as SIGNED )-CAST(LOCATE('paramname="屏幕尺寸" paramvalue="',
+                phone_infor) as SIGNED)+29)
+                ) as DECIMAL(4,2)
+                ) &lt;= #{sizeup}
+            </if>
+            <if test="phonecpu != null and phonecpu != ''">
+                and p.phone_infor like concat('%',#{phonecpu},'%')
+            </if>
+            <if test="phonetype != null and phonetype != ''">
+                and p.phone_type like concat('%',#{phonetype},'%')
+            </if>
+            <if test="phonenetwork != null and phonenetwork != ''">
+                and p.phone_infor like concat('%',#{phonenetwork},'%')
+            </if>
+            <if test="phoneappearance != null and phoneappearance != ''">
+                and p.phone_infor like concat('%',#{phoneappearance},'%')
+            </if>
+            and phone_state=0
+        </where>
+    </select>
+    <select id="getPhoneIdByPhoneModel" resultType="java.lang.Integer">
+        SELECT phone_id from phoneInfor_tab
+        where phone_model = #{0}
     </select>
 </mapper>
 

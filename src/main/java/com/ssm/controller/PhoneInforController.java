@@ -41,5 +41,34 @@ public class PhoneInforController {
     public PhoneInfor getPhoneInforById(@RequestParam("phone_id")int phone_id){
         return phoneInforService.getPhoneInforById(phone_id);
     }
-
+    @RequestMapping("/getPhoneInforByCondition")
+    public List<PhoneInfor> getPhoneInforByCondition(@RequestParam("pricelow")int pricelow,
+                                                     @RequestParam("priceup")int priceup,
+                                                     @RequestParam("sizelow")double sizelow,
+                                                     @RequestParam("sizeup")double sizeup,
+                                                     @RequestParam("phonecpu")String phonecpu,
+                                                     @RequestParam("phonetype")String phonetype,
+                                                     @RequestParam("phonenetwork")String phonenetwork,
+                                                     @RequestParam("phoneappearance")String phoneappearance,
+                                                     @RequestParam("current_page")int current_page,
+                                                     @RequestParam("pageSize")int pageSize){
+        return phoneInforService.getPhoneInforByCondition(pricelow, priceup, sizelow, sizeup, phonecpu,
+                                                phonetype,phonenetwork, phoneappearance, current_page, pageSize);
+    }
+    @RequestMapping("/getPhoneInforByConditionTotal")
+    public int getPhoneInforByConditionTotal(@RequestParam("pricelow")int pricelow,
+                                                     @RequestParam("priceup")int priceup,
+                                                     @RequestParam("sizelow")double sizelow,
+                                                     @RequestParam("sizeup")double sizeup,
+                                                     @RequestParam("phonecpu")String phonecpu,
+                                                     @RequestParam("phonetype")String phonetype,
+                                                     @RequestParam("phonenetwork")String phonenetwork,
+                                                     @RequestParam("phoneappearance")String phoneappearance){
+        return phoneInforService.getPhoneInforByConditionTotal(pricelow, priceup, sizelow, sizeup, phonecpu,
+                phonetype,phonenetwork, phoneappearance);
+    }
+    @RequestMapping("/getPhoneIdByPhoneModel")
+    public int getPhoneIdByPhoneModel(@RequestParam("phone_mode")String phone_mode){
+        return phoneInforService.getPhoneIdByPhoneModel(phone_mode);
+    }
 }

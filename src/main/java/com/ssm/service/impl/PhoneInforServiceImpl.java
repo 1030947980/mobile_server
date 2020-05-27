@@ -2,6 +2,7 @@ package com.ssm.service.impl;
 
 import com.ssm.dao.PhoneInforDao;
 import com.ssm.pojo.PhoneInfor;
+import com.ssm.pojo.PhoneCondition;
 import com.ssm.service.PhoneInforService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,64 @@ public class PhoneInforServiceImpl implements PhoneInforService {
     @Override
     public PhoneInfor getPhoneInforById(int phone_id) {
         return phoneInforDao.getPhoneInforById(phone_id);
+    }
+
+    @Override
+    public int getPhoneIdByPhoneModel(String phone_mode) {
+        return phoneInforDao.getPhoneIdByPhoneModel(phone_mode);
+    }
+
+    @Override
+    public List<PhoneInfor> getPhoneInforByCondition(int pricelow,int priceup,double sizelow,double sizeup,String phonecpu,
+                                                     String phonetype,String phonenetwork,String phoneappearance,int current_page,int pageSize)
+    {
+        int currentIndex =(current_page-1)*pageSize;
+        PhoneCondition phoneCondition = new PhoneCondition();
+        phoneCondition.setPricelow(pricelow);
+        phoneCondition.setPriceup(priceup);
+
+        phoneCondition.setSizelow(sizelow);
+        phoneCondition.setSizeup(sizeup);
+
+        if(!phonecpu.equals("不限")){
+            phoneCondition.setPhonecpu(phonecpu);
+        }
+        if(!phonetype.equals("不限")){
+            phoneCondition.setPhonetype(phonetype);
+        }
+        if(!phonenetwork.equals("不限")){
+            phoneCondition.setPhonenetwork(phonenetwork);
+        }
+        if(!phoneappearance.equals("不限")){
+            phoneCondition.setPhoneappearance(phoneappearance);
+        }
+        phoneCondition.setCurrentIndex(currentIndex);
+        phoneCondition.setPageSize(pageSize);
+        return phoneInforDao.getPhoneInforByCondition(phoneCondition);
+    }
+
+    @Override
+    public int getPhoneInforByConditionTotal(int pricelow, int priceup, double sizelow, double sizeup,
+                                             String phonecpu, String phonetype, String phonenetwork, String phoneappearance) {
+        PhoneCondition phoneCondition = new PhoneCondition();
+        phoneCondition.setPricelow(pricelow);
+        phoneCondition.setPriceup(priceup);
+
+        phoneCondition.setSizelow(sizelow);
+        phoneCondition.setSizeup(sizeup);
+
+        if(!phonecpu.equals("不限")){
+            phoneCondition.setPhonecpu(phonecpu);
+        }
+        if(!phonetype.equals("不限")){
+            phoneCondition.setPhonetype(phonetype);
+        }
+        if(!phonenetwork.equals("不限")){
+            phoneCondition.setPhonenetwork(phonenetwork);
+        }
+        if(!phoneappearance.equals("不限")){
+            phoneCondition.setPhoneappearance(phoneappearance);
+        }
+        return phoneInforDao.getPhoneInforByConditionTotal(phoneCondition);
     }
 }
