@@ -3,6 +3,7 @@ package com.ssm.service.impl;
 import com.ssm.dao.PhoneInforDao;
 import com.ssm.pojo.PhoneInfor;
 import com.ssm.pojo.PhoneCondition;
+import com.ssm.pojo.RankPhone;
 import com.ssm.service.PhoneInforService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +47,13 @@ public class PhoneInforServiceImpl implements PhoneInforService {
     }
 
     @Override
-    public int getPhoneIdByPhoneModel(String phone_mode) {
-        return phoneInforDao.getPhoneIdByPhoneModel(phone_mode);
+    public int getPhoneIdByPhoneModel(String phone_model) {
+        PhoneInfor phoneInfor = phoneInforDao.getPhoneIdByPhoneModel(phone_model);
+        if (phoneInfor==null)
+        {
+            return 0;
+        }
+        return phoneInfor.getPhone_id();
     }
 
     @Override
@@ -102,5 +108,15 @@ public class PhoneInforServiceImpl implements PhoneInforService {
             phoneCondition.setPhoneappearance(phoneappearance);
         }
         return phoneInforDao.getPhoneInforByConditionTotal(phoneCondition);
+    }
+
+    @Override
+    public List<RankPhone> getAllrank() {
+        return phoneInforDao.getAllrank();
+    }
+
+    @Override
+    public List<RankPhone> getRankByRankType(String rank_type) {
+        return phoneInforDao.getRankByRankType(rank_type);
     }
 }

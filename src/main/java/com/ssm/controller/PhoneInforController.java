@@ -1,6 +1,8 @@
 package com.ssm.controller;
 
+import com.ssm.dao.PhoneInforDao;
 import com.ssm.pojo.PhoneInfor;
+import com.ssm.pojo.RankPhone;
 import com.ssm.service.PhoneInforService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,7 +70,18 @@ public class PhoneInforController {
                 phonetype,phonenetwork, phoneappearance);
     }
     @RequestMapping("/getPhoneIdByPhoneModel")
-    public int getPhoneIdByPhoneModel(@RequestParam("phone_mode")String phone_mode){
-        return phoneInforService.getPhoneIdByPhoneModel(phone_mode);
+    public int getPhoneIdByPhoneModel(@RequestParam("phone_model")String phone_model){
+        return phoneInforService.getPhoneIdByPhoneModel(phone_model);
+    }
+    /**
+     * 排行
+     */
+    @RequestMapping("/getAllrank")
+    public List<RankPhone> getAllrank(){
+        return phoneInforService.getAllrank();
+    }
+    @RequestMapping("/getRankByRankType")
+    public List<RankPhone> getRankByRankType(@RequestParam("rank_type")String rank_type){
+        return phoneInforService.getRankByRankType(rank_type);
     }
 }

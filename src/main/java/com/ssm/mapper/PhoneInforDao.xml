@@ -114,9 +114,17 @@
             and phone_state=0
         </where>
     </select>
-    <select id="getPhoneIdByPhoneModel" resultType="java.lang.Integer">
+    <select id="getPhoneIdByPhoneModel" resultType="com.ssm.pojo.PhoneInfor">
         SELECT phone_id from phoneInfor_tab
         where phone_model = #{0}
+    </select>
+    <select id="getAllrank" resultType="com.ssm.pojo.RankPhone">
+        select rank_sequence,phone_model,rank_score from showAllrank_tab
+    </select>
+    <select id="getRankByRankType" resultType="com.ssm.pojo.RankPhone">
+      select r.rank_sequence,r.phone_model,r.rank_score,r.phone_price,p.phone_market from rank_tab r,phoneInfor_tab p
+      WHERE r.phone_model=p.phone_model and r.rank_type=#{0}
+      ORDER BY r.rank_sequence ASC
     </select>
 </mapper>
 
