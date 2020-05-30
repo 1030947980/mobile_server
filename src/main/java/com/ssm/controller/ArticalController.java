@@ -3,6 +3,7 @@ package com.ssm.controller;
 
 import com.ssm.pojo.ArticalComment;
 import com.ssm.pojo.ArticalInfor;
+import com.ssm.pojo.NewsInfor;
 import com.ssm.pojo.Replay;
 import com.ssm.service.ArticalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,5 +149,28 @@ public class ArticalController {
     @RequestMapping("/getAllUserArticalReplayByuserId")
     public List<Replay> getAllUserArticalReplayByuserId(@RequestParam("replayUser_id")int replayUser_id){
         return articalService.getAllUserArticalReplayByuserId(replayUser_id);
+    }
+    /**
+     * 收藏
+     */
+    @RequestMapping("/newArticalCollection")
+    public void newArticalCollection(@RequestParam("artical_id")int artical_id,
+                                  @RequestParam("user_id")int user_id){
+        articalService.newArticalCollection(artical_id, user_id);
+    }
+    @RequestMapping("/getArticalCollectionId")
+    public int getArticalCollectionId (@RequestParam("artical_id")int artical_id,
+                                    @RequestParam("user_id")int user_id){
+        return articalService.getArticalCollectionId(artical_id,user_id);
+    }
+    @RequestMapping("/changeArticalCollectionState")
+    public void changeArticalCollectionState (@RequestParam("artical_id")int artical_id,
+                                           @RequestParam("user_id")int user_id,
+                                           @RequestParam("collection_state")int collection_state){
+        articalService.changeArticalCollectionState(artical_id,user_id,collection_state);
+    }
+    @RequestMapping("/getArticalCollectByUserId")
+    public List<ArticalInfor> getArticalCollectByUserId(@RequestParam("user_id") int user_id){
+        return articalService.getArticalCollectByUserId(user_id);
     }
 }

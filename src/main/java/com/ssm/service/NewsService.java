@@ -1,5 +1,6 @@
 package com.ssm.service;
 
+import com.ssm.pojo.Collect;
 import com.ssm.pojo.NewsComment;
 import com.ssm.pojo.NewsInfor;
 import com.ssm.pojo.Replay;
@@ -17,7 +18,6 @@ public interface NewsService {
     int getNewsTotal();
     void changeNewsState(int news_id,int news_state);
     NewsInfor getNewsInforById(int news_id);
-    void collecdtNews(int news_id);
     List<NewsInfor> getRecommendHotNewNewsinfot(String condition,int current_page,int pageSize);
     int getRecommendHotNewNewsTotal(String condition);
     List<NewsInfor> getBussinessNewsinfor(String bussiness1,String bussiness2,int current_page,int pageSize);
@@ -44,4 +44,11 @@ public interface NewsService {
     List<Replay> getNewsReplayByCommentId(int comment_id);
     void sendReplayNews(int replayUser_id,int comment_id,String replay_content,String replay_time);
     List<Replay> getUserAllNewsReplayByUserId(int replayUser_id);
+    /**
+     * * 收藏
+     */
+    void newNewsCollection(int news_id,int user_id);
+    int getNewsCollectionId(int news_id,int user_id);
+    void changeNewsCollectionState(int news_id,int user_id,int collection_state);
+    List<NewsInfor> getNewsCollectByUserId(int user_id);
 }

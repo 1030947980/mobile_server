@@ -47,17 +47,14 @@
         values (#{replayUser_id},#{comment_id},#{replay_content},#{replay_time})
     </insert>
 
+
     <update id="changeNewsReplayState">
         update newsReplay_comment
         set replay_state = #{1}
         where replay_id = #{0}
     </update>
 
-    <update id="collecdtNews">
-        UPDATE news_tab
-        set news_collection =news_collection +1
-        WHERE news_id=#{0}
-    </update>
+
 
     <select id="getAllNewsComment" resultType="com.ssm.pojo.NewsComment">
       select n.comment_id,n.news_id,u.user_id,u.user_nickname,n.comment_content,n.comment_time,n.comment_state,news_tab.news_title
@@ -102,13 +99,13 @@
 
     <select id="getRecommendNewsinfot" resultType="com.ssm.pojo.NewsInfor">
         select news_id,news_title,news_describe,news_time,news_type,news_collection,news_imgUrl,news_state from news_tab
-        order by news_collection desc
+        order by news_collection desc,news_time desc
         LIMIT #{0},#{1};
     </select>
 
     <select id="getRecommendNewsTotal" resultType="java.lang.Integer">
         select count(*) as count from news_tab
-        order by news_collection desc
+        order by news_collection desc,news_time desc
     </select>
 
     <select id="getHotNewsinfot" resultType="com.ssm.pojo.NewsInfor">
@@ -188,5 +185,30 @@
     </select>
 
 
+
+    <insert id="newNewsCollection">
+        insert into newsCollection_tab (news_id,user_id)
+        values (#{id},#{user_id})
+    </insert>
+
+    <select id="getNewsCollectionId" resultType="com.ssm.pojo.Collect">
+        SELECT collection_id,collection_state from newsCollection_tab
+        WHERE news_id = #{id} and user_id =#{user_id}
+    </select>
+
+    <update id="changeNewsCollectionState">
+        update newsCollection_tab
+        set collection_state = #{collection_state}
+        where news_id = #{id} and user_id = #{user_id}
+    </update>
+    <update id="collectNews">
+        UPDATE news_tab
+        set news_collection =news_collection +#{1}
+        WHERE news_id=#{0}
+    </update>
+    <select id="getNewsCollectByUserId" resultType="com.ssm.pojo.NewsInfor">
+        select * from newsCollection_tab nc,news_tab n
+        where nc.news_id = n.news_id and nc.user_id=#{0} and nc.collection_state=0
+    </select>
 </mapper>
 

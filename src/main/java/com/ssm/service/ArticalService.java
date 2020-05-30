@@ -2,6 +2,7 @@ package com.ssm.service;
 
 import com.ssm.pojo.ArticalComment;
 import com.ssm.pojo.ArticalInfor;
+import com.ssm.pojo.NewsInfor;
 import com.ssm.pojo.Replay;
 
 import java.util.List;
@@ -45,4 +46,12 @@ public interface ArticalService {
     List<Replay> getArticalReplayByCommentId(int comment_id);
     void sendReplayArtical(int replayUser_id,int comment_id,String replay_content,String replay_time);
     List<Replay> getAllUserArticalReplayByuserId(int replayUser_id);
+
+    /**
+     * 收藏
+     */
+    void newArticalCollection(int artical_id,int user_id);
+    int getArticalCollectionId(int artical_id,int user_id);
+    void changeArticalCollectionState(int artical_id,int user_id,int collection_state);
+    List<ArticalInfor> getArticalCollectByUserId(int user_id);
 }

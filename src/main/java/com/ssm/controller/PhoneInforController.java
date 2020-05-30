@@ -80,6 +80,7 @@ public class PhoneInforController {
     public List<RankPhone> getAllrank(){
         return phoneInforService.getAllrank();
     }
+
     @RequestMapping("/getRankByRankType")
     public List<RankPhone> getRankByRankType(@RequestParam("rank_type")String rank_type){
         return phoneInforService.getRankByRankType(rank_type);

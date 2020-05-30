@@ -1,10 +1,7 @@
 package com.ssm.service.impl;
 
 import com.ssm.dao.NewsDao;
-import com.ssm.pojo.Bussiness;
-import com.ssm.pojo.NewsComment;
-import com.ssm.pojo.NewsInfor;
-import com.ssm.pojo.Replay;
+import com.ssm.pojo.*;
 import com.ssm.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,10 +41,6 @@ public class NewsServiceImpl implements NewsService {
         return newsDao.getNewsInforById(news_id);
     }
 
-    @Override
-    public void collecdtNews(int news_id) {
-        newsDao.collecdtNews(news_id);
-    }
 
     @Override
     public List<NewsInfor> getRecommendHotNewNewsinfot(String condition, int current_page, int pageSize) {
@@ -181,4 +174,60 @@ public class NewsServiceImpl implements NewsService {
         return newsDao.getUserAllNewsReplayByUserId(replayUser_id);
     }
 
+    @Override
+    public void newNewsCollection(int news_id, int user_id) {
+        Collect collect = new Collect();
+        collect .setId(news_id);
+        collect.setUser_id(user_id);
+        Collect getcollect = newsDao.getNewsCollectionId(collect);
+        //为空插入，news收藏数加1
+        if(getcollect==null){
+            newsDao.collectNews(collect.getId(),1);
+            newsDao.newNewsCollection(collect);
+        }
+        else if(getcollect.getCollection_state()!=0){
+            //已经存在 跟新状态为0 收藏+1
+            collect.setCollection_state(0);
+            newsDao.collectNews(collect.getId(),1);
+            newsDao.changeNewsCollectionState(collect);
+        }
+    }
+
+    @Override
+    public int getNewsCollectionId(int news_id,int user_id) {
+        Collect collect = new Collect();
+        collect.setId(news_id);
+        collect.setUser_id(user_id);
+        Collect getcollect = newsDao.getNewsCollectionId(collect);
+        //无
+        if(getcollect==null){
+            return 0;
+        }
+        //有 但是取消了
+        else if(getcollect.getCollection_state()==1){
+            //已经存在 跟新状态为0 收藏+1
+            return 0;
+        }
+        //返回
+        return getcollect.getCollection_id();
+    }
+
+    @Override
+    public void changeNewsCollectionState(int news_id,int user_id,int collection_state) {
+        Collect collect = new Collect();
+        collect.setUser_id(user_id);
+        collect.setCollection_state(collection_state);
+        collect.setId(news_id);
+        if(collection_state==1){
+            newsDao.collectNews(news_id,-1);
+        }
+        if(collection_state==0){
+            newsDao.collectNews(news_id,1);
+        }
+        newsDao.changeNewsCollectionState(collect);
+    }
+    @Override
+    public List<NewsInfor> getNewsCollectByUserId(int user_id){
+        return newsDao.getNewsCollectByUserId(user_id);
+    }
 }

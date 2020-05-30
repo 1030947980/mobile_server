@@ -143,11 +143,33 @@
         set replay_state = #{1}
         where replay_id =#{0}
     </update>
-
     <insert id="sendReplayArtical">
         insert into articalReplay_comment (replayUser_id,comment_id,replay_content,replay_time)
         values (#{replayUser_id},#{comment_id},#{replay_content},#{replay_time})
     </insert>
+
+    <update id="collectArtical">
+        UPDATE artical_tab
+        set artical_collection =artical_collection +#{1}
+        WHERE artical_id=#{0}
+    </update>
+    <insert id="newArticalCollection">
+        insert into articalCollection_tab (artical_id,user_id)
+        values (#{id},#{user_id})
+    </insert>
+    <select id="getArticalCollectionId" resultType="com.ssm.pojo.Collect">
+        SELECT collection_id ,collection_state from articalCollection_tab
+        WHERE artical_id = #{id} and user_id =#{user_id}
+    </select>
+    <update id="changeArticalCollectionState">
+        update articalCollection_tab
+        set collection_state = #{collection_state}
+        where artical_id = #{id} and user_id = #{user_id}
+    </update>
+    <select id="getArticalCollectByUserId" resultType="com.ssm.pojo.ArticalInfor">
+        select * from articalCollection_tab ac,artical_tab a
+        where ac.artical_id = a.artical_id and ac.user_id=#{0} and ac.collection_state=0
+    </select>
 
 </mapper>
 

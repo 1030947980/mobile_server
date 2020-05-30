@@ -3,6 +3,7 @@ package com.ssm.service.impl;
 import com.ssm.dao.ArticalDao;
 import com.ssm.pojo.ArticalComment;
 import com.ssm.pojo.ArticalInfor;
+import com.ssm.pojo.Collect;
 import com.ssm.pojo.Replay;
 import com.ssm.service.ArticalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -163,4 +164,66 @@ public class ArticalServiceImpl implements ArticalService {
     public List<Replay> getAllUserArticalReplayByuserId(int replayUser_id) {
         return articalDao.getAllUserArticalReplayByuserId(replayUser_id);
     }
+
+    /**
+     * 收藏
+     */
+    @Override
+    public void newArticalCollection(int artical_id, int user_id) {
+        Collect collect = new Collect();
+        collect .setId(artical_id);
+        collect.setUser_id(user_id);
+        Collect getcollect = articalDao.getArticalCollectionId(collect);
+        //为空插入，news收藏数加1
+        if(getcollect==null){
+            articalDao.collectArtical(collect.getId(),1);
+            articalDao.newArticalCollection(collect);
+        }
+        else if(getcollect.getCollection_state()!=0){
+            //已经存在 跟新状态为0 收藏+1
+            collect.setCollection_state(0);
+            articalDao.collectArtical(collect.getId(),1);
+            articalDao.changeArticalCollectionState(collect);
+        }
+    }
+
+    @Override
+    public int getArticalCollectionId(int artical_id, int user_id) {
+        Collect collect = new Collect();
+        collect.setId(artical_id);
+        collect.setUser_id(user_id);
+        Collect getcollect = articalDao.getArticalCollectionId(collect);
+        //无
+        if(getcollect==null){
+            return 0;
+        }
+        //有 但是取消了
+        else if(getcollect.getCollection_state() ==1){
+            //已经存在 跟新状态为0 收藏+1
+            return 0;
+        }
+        //返回
+        return getcollect.getCollection_id();
+    }
+
+    @Override
+    public void changeArticalCollectionState(int artical_id, int user_id, int collection_state) {
+        Collect collect = new Collect();
+        collect.setUser_id(user_id);
+        collect.setCollection_state(collection_state);
+        collect.setId(artical_id);
+        if(collection_state==1){
+            articalDao.collectArtical(artical_id,-1);
+        }
+        if(collection_state==0){
+            articalDao.collectArtical(artical_id,1);
+        }
+        articalDao.changeArticalCollectionState(collect);
+    }
+
+    @Override
+    public List<ArticalInfor> getArticalCollectByUserId(int user_id) {
+        return articalDao.getArticalCollectByUserId(user_id);
+    }
+
 }

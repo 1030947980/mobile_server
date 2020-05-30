@@ -24,12 +24,6 @@ public interface NewsDao {
      */
     int getNewsTotal();
 
-    /**
-     * 收藏
-     * @param news_id
-     * @return
-     */
-    int collecdtNews(int news_id);
     List<NewsInfor> getRecommendNewsinfot(int currentIndex,int pageSize);
     int getRecommendNewsTotal();
     List<NewsInfor> getHotNewsinfot(int currentIndex,int pageSize);
@@ -107,4 +101,12 @@ public interface NewsDao {
      */
     int changeNewsReplayState(int replay_id,int replay_state);
 
+    /**
+     * 收藏
+     */
+    int newNewsCollection(Collect collect);
+    Collect getNewsCollectionId(Collect collect);
+    int changeNewsCollectionState(Collect collect);
+    int collectNews(int news_id,int add);
+    List<NewsInfor> getNewsCollectByUserId(int user_id);
 }

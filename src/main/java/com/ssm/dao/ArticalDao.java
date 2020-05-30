@@ -1,9 +1,6 @@
 package com.ssm.dao;
 
-import com.ssm.pojo.ArticalComment;
-import com.ssm.pojo.ArticalInfor;
-import com.ssm.pojo.NewsComment;
-import com.ssm.pojo.Replay;
+import com.ssm.pojo.*;
 
 import java.util.List;
 
@@ -44,4 +41,12 @@ public interface ArticalDao {
     List<Replay> getArticalReplayByCommentId(int comment_id);
     int sendReplayArtical(Replay replay);
     List<Replay> getAllUserArticalReplayByuserId(int replayUser_id);
+    /**
+     * 收藏
+     */
+    int newArticalCollection(Collect collect);
+    Collect getArticalCollectionId(Collect collect);
+    int changeArticalCollectionState(Collect collect);
+    int collectArtical(int artical,int add);
+    List<ArticalInfor> getArticalCollectByUserId(int user_id);
 }
